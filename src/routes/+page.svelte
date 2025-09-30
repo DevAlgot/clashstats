@@ -10,22 +10,26 @@
 </script>
 
 <main>
-    <h1>Welcome to Clash Royale Stats</h1>
-    <p>This is a basic Svelte page. Customize it as you like!</p>
+    <section>
+        <h1>Clash Royale Stats</h1>
+        <canvas id="starfield"></canvas>
 
-    <input
-        type="text"
-        placeholder="Enter player tag..."
-        autocomplete="username"
-        bind:value={searchTag}
-        on:keydown={(e) => {
-            if (e.key === "Enter") searchPlayer();
-        }}
-        style="margin-bottom: 1rem;"
-    />
-    <button on:click={searchPlayer}>Search</button>
-
-    <a href="/player/89PY22Q89">Check birb's stats</a>
-    <a href="/player/2ULJU2RQG">Check out Carlo's stats</a>
-    <a href="/player/RV08Y88">Check out Linkan's stats</a>
+        <div id="search">
+            <input
+                type="text"
+                placeholder="Enter player tag..."
+                autocomplete="on"
+                list="player-tags"
+                bind:value={searchTag}
+                on:keydown={(e) => {
+                    if (e.key === "Enter") searchPlayer();
+                }}
+            />
+            <button on:click={searchPlayer}>Search</button>
+        </div>
+        <br />
+        <a href="/player/89PY22Q89">Check birb's stats</a>
+        <a href="/player/2ULJU2RQG">Check out Carlo's stats</a>
+        <a href="/player/RV08Y88">Check out Linkan's stats</a>
+    </section>
 </main>

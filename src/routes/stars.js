@@ -10,6 +10,8 @@ function resizeCanvas() {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
   initStars();
+  console.log("Canvas resized to:", canvas.width, canvas.height);
+  
 }
 
 function initStars() {

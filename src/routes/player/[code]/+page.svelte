@@ -1,12 +1,14 @@
 <script>
     import { page } from "$app/state";
     import { get } from "svelte/store";
+
     import "$lib/css/global.scss";
     import Deck from "$lib/components/Deck.svelte";
 
     let { data } = $props();
     data = data.data;
     console.log(data);
+
 </script>
 
 <h1>{data.name}'s statistics</h1>
@@ -27,7 +29,8 @@
 
 <style>
     .player-stats {
-        background: #f4f4f4;
+        background: inherit;
+        border: 2px dotted #1e19ad;
         padding: 1rem;
         border-radius: 8px;
         max-width: 60vw;

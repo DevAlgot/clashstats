@@ -8,7 +8,23 @@
 <div class="deck-info">
     <div class="deck">
         {#each currentDeck as card}
-            <img src={card.iconUrls.medium} alt="" srcset="" />
+            <div class="card">
+                {#if card == currentDeck[0] || card == currentDeck[1]}
+                    <img
+                        src="https://cdn.statsroyale.com/v6/cards/small/{card.id +
+                            10000000}_active.png"
+                        alt=""
+                        srcset=""
+                    />
+                {:else}
+                    <img
+                        src="https://cdn.statsroyale.com/v6/cards/small/{card.id}.png"
+                        alt=""
+                        srcset=""
+                    />
+                {/if}
+                <p>Level {card.level + (14 - card.maxLevel)}</p>
+            </div>
         {/each}
     </div>
 </div>
@@ -17,6 +33,7 @@
     .deck-info {
         text-align: center;
         font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-color: inherit;
     }
 
     .deck {
@@ -26,10 +43,25 @@
         border-radius: 15px;
         padding: 0 9px;
 
-        img {
-            width: 100%;
-            height: auto;
-            border-radius: 8px;
+        .card {
+            position: relative;
+            img {
+                width: 100%;
+                height: auto;
+                border-radius: 8px;
+                position: relative;
+            }
+
+            p {
+                margin: 0;
+                position: absolute;
+                bottom: -19%;
+                left: 50%;
+                bottom: 2px;
+                transform: translate(-50%, -100%);
+                font-size: 12px;
+                font-weight: bold;
+            }
         }
     }
 </style>
