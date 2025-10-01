@@ -6,6 +6,7 @@
     import Deck from "$lib/components/Deck.svelte";
     import Card from "$lib/components/cards/Card.svelte";
     import EvoCard from "$lib/components/cards/EvoCard.svelte";
+    import Level from "$lib/components/Level.svelte";
 
     const rarityRank = {
         common: 1,
@@ -62,7 +63,27 @@
         return t;
     }
 
-    let cardsSortedByLevel = sortBy(data.cards, 0, false);
+let cardsByLevel = {};
+
+// Group cards by their level
+for (let card of data.cards) {
+    const level = getLevel(card);
+    if (!cardsByLevel[level]) {
+        cardsByLevel[level] = [];
+    }
+    cardsByLevel[level].push(card);
+}
+
+// If you want an array of arrays (one array per level):
+let cardsGroupedByLevel = Object.values(cardsByLevel);
+
+// If you want a flat array of all cards (already in data.cards)
+let allCards = sortBy(data.cards,0,false);
+
+console.log(cardsGroupedByLevel);
+console.log(allCards);
+    
+
 </script>
 
 <h1>{data.name}'s statistics</h1>
@@ -86,7 +107,7 @@
         </div>
     </div>
     <section class="cards">
-        {#each cardsSortedByLevel as card}
+        {#each allCards as card}
             {#if card.evolutionLevel != null}
                 <EvoCard {card}></EvoCard>
             {:else}
@@ -94,6 +115,7 @@
             {/if}
         {/each}
     </section>
+
 </div>
 
 <style lang="scss">
@@ -108,11 +130,6 @@
         .cards {
             display: grid;
             grid-template-columns: repeat(10, minmax(0, 1fr));
-
-            img {
-                width: 100%;
-                height: auto;
-            }
         }
     }
 

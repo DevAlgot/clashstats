@@ -1,13 +1,14 @@
 <script>
     import { get } from "svelte/store";
     import "$lib/css/global.scss";
+    import "$lib/css/card.scss";
 
     let { card } = $props();
 </script>
 
 <div id="card">
     <img
-        src="https://cdn.statsroyale.com/v6/cards/small/{card.id +
+        src="https://cdn.statsroyale.com/v6/cards/full/{card.id +
             10000000}_active.png"
         alt=""
         srcset=""
