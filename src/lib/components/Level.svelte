@@ -10,10 +10,21 @@
 </script>
 
 <div>
-    <h2>Level {cards[0].level + (14- cards[0].maxLevel)}</h2>
+    <h2>Level {cards[0].level + (14 - cards[0].maxLevel)}</h2>
     <div class="cards">
         {#each cards as card}
-            <Card {card}></Card>
+            {#if card.evolutionLevel != null}
+                <EvoCard {card}></EvoCard>
+            {:else}
+                <Card {card}></Card>
+            {/if}
         {/each}
     </div>
 </div>
+
+<style lang="scss">
+    .cards {
+        display: grid;
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+    }
+</style>

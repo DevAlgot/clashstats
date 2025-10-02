@@ -63,27 +63,25 @@
         return t;
     }
 
-let cardsByLevel = {};
+    let cardsByLevel = {};
 
-// Group cards by their level
-for (let card of data.cards) {
-    const level = getLevel(card);
-    if (!cardsByLevel[level]) {
-        cardsByLevel[level] = [];
+    // Group cards by their level
+    for (let card of data.cards) {
+        const level = getLevel(card);
+        if (!cardsByLevel[level]) {
+            cardsByLevel[level] = [];
+        }
+        cardsByLevel[level].push(card);
     }
-    cardsByLevel[level].push(card);
-}
 
-// If you want an array of arrays (one array per level):
-let cardsGroupedByLevel = Object.values(cardsByLevel);
+    // If you want an array of arrays (one array per level):
+    let cardsGroupedByLevel = Object.values(cardsByLevel);
 
-// If you want a flat array of all cards (already in data.cards)
-let allCards = sortBy(data.cards,0,false);
+    // If you want a flat array of all cards (already in data.cards)
+    let allCards = sortBy(data.cards, 0, false);
 
-console.log(cardsGroupedByLevel);
-console.log(allCards);
-    
-
+    console.log(cardsGroupedByLevel.reverse());
+    console.log(allCards);
 </script>
 
 <h1>{data.name}'s statistics</h1>
@@ -107,15 +105,10 @@ console.log(allCards);
         </div>
     </div>
     <section class="cards">
-        {#each allCards as card}
-            {#if card.evolutionLevel != null}
-                <EvoCard {card}></EvoCard>
-            {:else}
-                <Card {card}></Card>
-            {/if}
+        {#each cardsGroupedByLevel as levelCards}
+            <Level cards={levelCards}></Level>
         {/each}
     </section>
-
 </div>
 
 <style lang="scss">
@@ -128,8 +121,8 @@ console.log(allCards);
         margin: auto;
 
         .cards {
-            display: grid;
-            grid-template-columns: repeat(10, minmax(0, 1fr));
+            display: flex;
+            flex-direction: column;
         }
     }
 
