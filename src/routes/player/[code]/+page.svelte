@@ -3,6 +3,7 @@
     import { get } from "svelte/store";
 
     import "$lib/css/global.scss";
+    import "$lib/css/player.scss";
     import Deck from "$lib/components/Deck.svelte";
     import Card from "$lib/components/cards/Card.svelte";
     import EvoCard from "$lib/components/cards/EvoCard.svelte";
@@ -75,70 +76,79 @@
     }
 
     // If you want an array of arrays (one array per level):
-    let cardsGroupedByLevel = Object.values(cardsByLevel);
-
+    let cardsGroupedByLevel = Object.values(cardsByLevel).reverse();
     // If you want a flat array of all cards (already in data.cards)
     let allCards = sortBy(data.cards, 0, false);
-
-    console.log(cardsGroupedByLevel.reverse());
-    console.log(allCards);
 </script>
 
-<h1>{data.name}'s statistics</h1>
-<div id="upper">
-    <div class="player-stats">
-        <ul>
-            <li><strong>Name:</strong> {data.name}</li>
-            <li><strong>Tag:</strong> {data.tag}</li>
-            <li><strong>Trophies:</strong> {data.trophies}</li>
-            <li><strong>Clan:</strong> {data.clan.name}</li>
-            <li><strong>Level:</strong> {data.level}</li>
-            <li><strong>Wins:</strong> {data.wins}</li>
-            <li><strong>Losses:</strong> {data.losses}</li>
-            <li>
-                <strong>Win ratio:</strong>
-                {round(round(data.wins / data.battleCount, 4) * 100, 2)}% <!---->
-            </li>
-        </ul>
-        <div id="current-deck">
-            <Deck currentDeck={data.currentDeck} />
+<svelte:head>
+    <title
+        >{data.name} {data.tag} Clash Royale profile | Royalty Statistics</title
+    >
+</svelte:head>
+
+<main class="player">
+    <h1>{data.name}'s statistics</h1>
+    <div id="upper">
+        <div class="player-stats">
+            <ul>
+                <li>
+                    <strong>Name:</strong>
+                    <div class="spacer"></div>
+                    {data.name}
+                </li>
+                <li>
+                    <strong>Tag:</strong>
+                    <div class="spacer"></div>
+                    {data.tag}
+                </li>
+                <li>
+                    <strong>Trophies:</strong>
+                    <div class="spacer"></div>
+                    {data.trophies}
+                </li>
+                <li>
+                    <strong>Clan:</strong>
+                    <div class="spacer"></div>
+                    {data.clan ? data.clan.name : "No clan"}
+                </li>
+                <li>
+                    <strong>Level:</strong>
+                    <div class="spacer"></div>
+                    {data.expLevel}
+                </li>
+                <li>
+                    <strong>Wins:</strong>
+                    <div class="spacer"></div>
+                    {data.wins}
+                </li>
+                <li>
+                    <strong>Losses:</strong>
+                    <div class="spacer"></div>
+                    {data.losses}
+                </li>
+                <li>
+                    <strong>Win ratio:</strong>
+                    <div class="spacer"></div>
+
+                    {round(round(data.wins / data.battleCount, 4) * 100, 2)}% <!---->
+                </li>
+            </ul>
+            <div id="current-deck">
+                <Deck
+                    cards={allCards}
+                    currentDeck={data.currentDeck}
+                    repeat={8}
+                />
+            </div>
         </div>
+        <section class="cards">
+            {#each cardsGroupedByLevel as levelCards}
+                <Level cards={levelCards}></Level>
+            {/each}
+        </section>
     </div>
-    <section class="cards">
-        {#each cardsGroupedByLevel as levelCards}
-            <Level cards={levelCards}></Level>
-        {/each}
-    </section>
-</div>
+</main>
 
 <style lang="scss">
-    #upper {
-        background: inherit;
-        border: 2px dotted #1e19ad;
-        padding: 1rem;
-        border-radius: 8px;
-        max-width: 60vw;
-        margin: auto;
-
-        .cards {
-            display: flex;
-            flex-direction: column;
-        }
-    }
-
-    .player-stats {
-        display: flex;
-        justify-content: space-between;
-
-        ul {
-            list-style: none;
-            padding: 0;
-            max-width: 45%;
-            display: inline-block;
-        }
-    }
-
-    #current-deck {
-        max-width: 45%;
-    }
 </style>

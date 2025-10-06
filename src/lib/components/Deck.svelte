@@ -4,14 +4,18 @@
     import Card from "$lib/components/cards/Card.svelte";
     import EvoCard from "$lib/components/cards/EvoCard.svelte";
 
-    let { currentDeck } = $props();
+    let { currentDeck, cards, repeat } = $props();
 </script>
 
 <div class="deck-info">
-    <div class="deck">
+    <div class="deck repeat{repeat}">
         {#each currentDeck as card}
             {#if currentDeck[0] == card || currentDeck[1] == card}
-                <EvoCard {card}></EvoCard>
+                {#if card.evolutionLevel != null}
+                    <EvoCard {card}></EvoCard>
+                {:else}
+                    <Card {card}></Card>
+                {/if}
             {:else}
                 <Card {card}></Card>
             {/if}
@@ -19,7 +23,9 @@
     </div>
 </div>
 
-<style lang="scss">
+<style lang="scss" global>
+    @use "src/lib/css/global.scss" as global;
+
     .deck-info {
         text-align: center;
         font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -28,9 +34,15 @@
 
     .deck {
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        box-shadow: inset #a4a4a4 0 0 8px 0;
+        border: 1px solid global.$primary-400;
+        border-top: 1px solid global.$primary-300;
         border-radius: 15px;
-        padding: 0 9px;
+        padding: 15px 9px 0px 9px;
+        &.repeat8 {
+            grid-template-columns: repeat(8, minmax(0, 1fr));
+        }
+        &.repeat4 {
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
     }
 </style>

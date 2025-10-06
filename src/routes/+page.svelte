@@ -12,8 +12,6 @@
 <main>
     <section>
         <h1>Clash Royale Stats</h1>
-        <canvas id="starfield"></canvas>
-
         <div id="search">
             <input
                 type="text"

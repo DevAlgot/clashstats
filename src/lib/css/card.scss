@@ -2,13 +2,12 @@
     position: relative;
     border-radius: 5px;
     transform: translateY(0px);
-    transition: transform 0.3s cubic-bezier( 0.15, 0.82, 0.76, 0.97 );
+    transition: transform 0.3s cubic-bezier(0.15, 0.82, 0.76, 0.97);
 
-    &:hover{
+    &:hover {
         transform: translateY(-5px);
         cursor: pointer;
     }
-
 
     img {
         width: 100%;
@@ -27,5 +26,6 @@
         font-weight: bold;
         width: 100%;
         text-align: center;
+        color: white;
     }
 }

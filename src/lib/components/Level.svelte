@@ -24,7 +24,11 @@
 
 <style lang="scss">
     .cards {
-        display: grid;
+        display: grid !important;
         grid-template-columns: repeat(12, minmax(0, 1fr));
+    }
+
+    h2 {
+        margin: 10px 0 5px 0;
     }
 </style>
