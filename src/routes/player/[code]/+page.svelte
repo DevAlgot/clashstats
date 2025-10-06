@@ -20,6 +20,7 @@
     let { data } = $props();
     data = data.data;
     console.log(data);
+    
 
     function round(num, decimals = 2) {
         let decimalsNum = Math.pow(10, decimals);
@@ -139,6 +140,7 @@
                     cards={allCards}
                     currentDeck={data.currentDeck}
                     repeat={8}
+                    support={data.currentDeckSupportCards[0]}
                 />
             </div>
         </div>

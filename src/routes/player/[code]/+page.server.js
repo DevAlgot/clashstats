@@ -13,7 +13,8 @@ export async function load({ params }) {
 
     const targetUrl = `https://proxy.royaleapi.dev/v1/players/%23${encodeURIComponent(params.code)}`;
     const response = await fetch(targetUrl, options);
-    const data = await response.json();
+    const data = await response.json();    
+    
 
     return { data };
 
