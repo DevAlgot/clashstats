@@ -10,7 +10,11 @@
 </script>
 
 <div>
-    <h2>Level {cards[0].level + (14 - cards[0].maxLevel)}</h2>
+    {#if cards[0].level + (14 - cards[0].maxLevel) < 15}
+        <h2>Level {cards[0].level + (14 - cards[0].maxLevel)}</h2>
+    {:else}
+        <h2>Elite</h2>
+    {/if}
     <div class="cards">
         {#each cards as card}
             {#if card.evolutionLevel != null}

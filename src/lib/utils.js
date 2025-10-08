@@ -1,15 +1,15 @@
-function round(num, decimals = 2) {
+export function round(num, decimals = 2) {
     let decimalsNum = Math.pow(10, decimals);
     num *= decimalsNum;
 
     return Math.round(num) / decimalsNum;
 }
 
-function getLevel(card) {
+export function getLevel(card) {
     return card.level + (14 - card.maxLevel);
 }
 
-function sortBy(list, type, ascending) {
+export function sortBy(list, type, ascending) {
     let t = [];
 
     switch (type) {
@@ -40,3 +40,11 @@ function sortBy(list, type, ascending) {
     }
     return t;
 }
+
+export const rarityRank = {
+    common: 1,
+    rare: 2,
+    epic: 3,
+    legendary: 4,
+    champion: 5,
+};

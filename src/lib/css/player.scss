@@ -26,12 +26,24 @@ main.player {
         list-style: none;
         padding: 0;
         width: 100%;
-        display: inline-block;
+        display: grid;
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+        gap: 1rem;
 
         li {
             color: global.$neutral-100;
-            display: flex;
-            justify-content: space-between;
+            background-image: url("$lib/assets/triangles.jpg");
+            background-size: cover;
+            background-image: linear-gradient(rgba(global.$primary-500, 0.85), rgba(global.$primary-500, 1)),
+                url("$lib/assets/triangles.jpg");
+            background-color: global.$primary-500;
+
+
+            border: global.$primary-400 1px solid;
+            border-top: global.$primary-300 1px solid;
+            aspect-ratio: 1/1;
+            border-radius: 15px;
+            padding: 1rem;
 
             .spacer {
                 border-bottom: 1px solid global.$neutral-600;
