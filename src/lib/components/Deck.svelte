@@ -53,13 +53,13 @@
                 <Card {card}></Card>
             {/if}
         {/each}
-        <p>Avrage Level: {avgLevel}</p>
-        <p>Avrage Elixir: {avgElixir}</p>
+        <p>Average Level: {avgLevel}</p>
+        <p>Average Elixir: {avgElixir}</p>
     </div>
 </div>
 
 <style lang="scss" global>
-    @use "src/lib/css/global.scss" as global;
+    @use "src/lib/css/colors.scss" as global;
 
     .deck-info {
         text-align: center;
