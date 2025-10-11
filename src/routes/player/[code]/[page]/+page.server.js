@@ -1,8 +1,8 @@
 import { json } from '@sveltejs/kit';
 
-export async function load(event) {
-    const { params } = event;
 
+
+export async function load({ params }) {
     const options = {
         method: "GET",
         headers: {
@@ -11,11 +11,18 @@ export async function load(event) {
         }
     };
 
-    const targetUrl = `https://proxy.royaleapi.dev/v1/players/%23${encodeURIComponent(params.code)}/battlelog`;
-    const response = await fetch(targetUrl, options);
-    const data = await response.json();
+    // Fetch player profile
+    const profileUrl = `https://proxy.royaleapi.dev/v1/players/%23${encodeURIComponent(params.code)}`;
+    const profileRes = await fetch(profileUrl, options);
+    const profile = await profileRes.json();
 
+    // Fetch player battlelog
+    const battlelogUrl = `https://proxy.royaleapi.dev/v1/players/%23${encodeURIComponent(params.code)}/battlelog`;
+    const battlelogRes = await fetch(battlelogUrl, options);
+    const battlelog = await battlelogRes.json();
 
-    return { data };
-
+    return {
+        profile,
+        battlelog
+    };
 }

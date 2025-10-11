@@ -48,3 +48,20 @@ export const rarityRank = {
     legendary: 4,
     champion: 5,
 };
+
+
+export function getAvrageLevel(deck) {
+    let sum = 0;
+    for (let i = 0; i < deck.length; i++) {
+        sum += getLevel(deck[i]);
+    }
+    return round(sum / deck.length, 1);
+}
+
+export function getAvrageElixir(deck) {
+    let sum = 0;
+    for (let i = 0; i < deck.length; i++) {
+        sum += deck[i].elixirCost;
+    }
+    return round(sum / deck.length, 1);
+}

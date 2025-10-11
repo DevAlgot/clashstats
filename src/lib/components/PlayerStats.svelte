@@ -6,14 +6,12 @@
     import EvoCard from "$lib/components/cards/EvoCard.svelte";
     import Level from "$lib/components/Level.svelte";
 
-    let { data } = $props();
-
-    console.log(data);
+    let { player } = $props();
 
     let cardsByLevel = {};
 
     // Group cards by their level
-    for (let card of data.cards) {
+    for (let card of player.cards) {
         const level = getLevel(card);
         if (!cardsByLevel[level]) {
             cardsByLevel[level] = [];
@@ -34,36 +32,36 @@
         });
     }
 
-    // If you want a flat array of all cards (already in data.cards)
-    let allCards = sortBy(data.cards, 0, false);
+    // If you want a flat array of all cards (already in player.cards)
+    let allCards = sortBy(player.cards, 0, false);
 </script>
 
 <div class="player-stats">
     <ul>
         <li>
             <h2><strong>Trophies:</strong></h2>
-            <p>{data.trophies}</p>
+            <p>{player.trophies}</p>
         </li>
         <li>
             <h2><strong>Clan:</strong></h2>
-            <p>{data.clan ? data.clan.name : "No clan"}</p>
+            <p>{player.clan ? player.clan.name : "No clan"}</p>
         </li>
         <li>
             <h2><strong>Level:</strong></h2>
-            <p>{data.expLevel}</p>
+            <p>{player.expLevel}</p>
         </li>
         <li>
             <h2><strong>Wins:</strong></h2>
-            <p>{data.wins}</p>
+            <p>{player.wins}</p>
         </li>
         <li>
             <h2><strong>Losses:</strong></h2>
-            <p>{data.losses}</p>
+            <p>{player.losses}</p>
         </li>
         <li>
             <h2><strong>Favorite card:</strong></h2>
             <p>
-                {data.currentFavouriteCard.name}
+                {player.currentFavouriteCard.name}
             </p>
             <!---->
         </li>
@@ -71,9 +69,9 @@
     <div id="current-deck">
         <Deck
             cards={allCards}
-            currentDeck={data.currentDeck}
+            currentDeck={player.currentDeck}
             repeat={8}
-            support={data.currentDeckSupportCards[0]}
+            support={player.currentDeckSupportCards[0]}
         />
     </div>
 </div>
@@ -98,6 +96,48 @@
     }}
     type="button"
 ></button>
+
+<select name="sort" id="" onchange={(e) => {
+    console.log(e.target.value);
+    switch(e.target.value) {
+        case "rarity-asc":
+            for (let levelCards of cardsGroupedByLevel) {
+                levelCards.sort((a, b) => {
+                    if (rarityRank[a.rarity] === rarityRank[b.rarity]) {
+                        return a.elixirCost - b.elixirCost;
+                    }
+                    return rarityRank[a.rarity] - rarityRank[b.rarity];
+                });
+            }
+            break;
+        case "rarity-desc":
+            for (let levelCards of cardsGroupedByLevel) {
+                levelCards.sort((a, b) => {
+                    if (rarityRank[a.rarity] === rarityRank[b.rarity]) {
+                        return b.elixirCost - a.elixirCost;
+                    }
+                    return rarityRank[b.rarity] - rarityRank[a.rarity];
+                });
+            }
+            break;
+        case "elixir-asc":
+            for (let levelCards of cardsGroupedByLevel) {
+                levelCards.sort((a, b) => a.elixirCost - b.elixirCost);
+            }
+            break;
+        case "elixir-desc":
+            for (let levelCards of cardsGroupedByLevel) {
+                levelCards.sort((a, b) => b.elixirCost - a.elixirCost);
+            }
+            break;
+    }
+    
+}}>
+    <option value="rarity-asc">Rarity Ascending</option>
+    <option value="rarity-desc">Rarity Descending</option>
+    <option value="elixir-asc">Elixir Ascending</option>
+    <option value="elixir-desc">Elixir Descending</option>
+</select>
 
 <style lang="scss">
     @use "src/lib/css/colors.scss" as global;

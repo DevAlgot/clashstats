@@ -8,8 +8,11 @@
     import EvoCard from "$lib/components/cards/EvoCard.svelte";
 
     let { currentDeck, cards, repeat, support } = $props();
-
-    console.log(support);
+    if(!support){
+        support = {id: 159000004};
+        console.log("no support found, using default");
+    }
+    
 
     //support cards, defiened to easier get the image.
     let supporters = {
@@ -21,10 +24,13 @@
             "https://game-assets.clashroyaleapp.com/97e7e4f5da14075417226853ec2c43591232cb64/image/chr_support_cards/support_card_hires_knives_thrower.png",
         159000003:
             "https://game-assets.clashroyaleapp.com/97e7e4f5da14075417226853ec2c43591232cb64/image/chr_support_cards/support_card_hires_royal_chef.png",
+        159000004:
+            "",
     };
 
     let sum = $state(0);
     let elixir = $state(0);
+    
 
     for (let i = 0; i < currentDeck.length; i++) {
         sum += getLevel(currentDeck[i]); //grab the level of the card
@@ -35,6 +41,8 @@
     let avgLevel = round(sum / currentDeck.length, 1);
     // svelte-ignore state_referenced_locally
     let avgElixir = round(elixir / currentDeck.length, 1);
+
+
 </script>
 
 <div class="deck-info">
@@ -81,13 +89,19 @@
 
         &.repeat8 {
             grid-template-columns: repeat(8, minmax(0, 1fr));
+            .support{
+                grid-column: 1/span 8 ;
+            }
         }
         &.repeat4 {
             grid-template-columns: repeat(4, minmax(0, 1fr));
+        
+            .support{
+                grid-column: 1/span 4 ;
+            }
         }
 
         .support {
-            grid-column: 1 / span 8;
             margin-bottom: 10px;
             position: relative;
             height: 67px;

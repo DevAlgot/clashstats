@@ -31,3 +31,80 @@
         <a href="/player/RV08Y88/profile">Check out Linkan's stats</a>
     </section>
 </main>
+
+<style lang="scss">
+@use "src/lib/css/colors.scss" as *;
+@use "src/lib/css/global.scss" as *;
+
+main {
+        display: flex;
+    justify-content: center;
+    align-items: center;
+}
+    section {
+    h1 {
+        font-size: 3rem;
+        margin-bottom: 0.5rem;
+        color: $neutral-200;
+        text-shadow: 0 0 25px $primary-400;
+
+        span {
+            font-size: 1.5rem;
+            color: gray
+        }
+    }
+
+    a {
+        color: $primary-300
+    }
+}
+
+#search {
+    @extend .pad0-mar0;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    box-shadow: 0 0 50px 0 #313180a8;
+    overflow: hidden;
+    border-radius: 0.5rem;
+
+
+    input {
+        @extend .border-none;
+        padding: 0.75rem 1rem;
+        border-radius: 0.5rem 0 0 0.5rem;
+        background: rgba(255, 255, 255, 0.1);
+        color: $neutral-100;
+        font-size: 1.1rem;
+        transition: background 0.2s;
+
+        &::placeholder {
+            color: #ccc;
+            opacity: 1;
+        }
+
+        flex-grow: 1;
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    button {
+        @extend .border-none;
+        padding: 0.75rem 1.2rem;
+        border-radius: 0 0.5rem 0.5rem 0;
+        background: rgba(255, 255, 255, 0.18);
+        color: white;
+        font-size: 1.1rem;
+        cursor: pointer;
+        transition: background 0.2s;
+
+        &:hover,
+        &:focus {
+            background: rgba(255, 255, 255, 0.28);
+            outline: none;
+        }
+    }
+}
+</style>

@@ -1,45 +1,30 @@
 <script>
-    let { data } = $props();
-    console.log(data);
+    let { data, code, player } = $props();    
 
-    let urlToFavorite = data.currentFavouriteCard.name
+    let urlToFavorite = player.currentFavouriteCard.name
         .replace(/\s+/g, "_")
         .toLowerCase();
 </script>
 
-<div id="upper">
+
     <section class="header">
-        <h1 class="name">{data.name}</h1>
-        <p class="tag">{data.tag}</p>
+        <h1 class="name">{player.name}</h1>
+        <p class="tag">{player.tag}</p>
         <img
             src="https://cdn.statsroyale.com/v5/image/chr/{urlToFavorite}_dl.png"
             alt=""
         />
     </section>
     <div id="nav">
-        <a href="profile">Profile</a><a href="battles">Battles</a><a
+        <a href="./profile">Profile</a><a href="battles">Battles</a><a
             href="cards">Cards</a
         >
     </div>
-</div>
 
 <style lang="scss">
     @use "src/lib/css/colors.scss" as theme;
 
-    #upper {
-        border: 2px solid theme.$primary-400;
-        border-top: 2px solid theme.$primary-300;
-        padding: 1rem;
-        border-radius: 8px;
-        max-width: 60vw;
-        margin: auto;
-        background-color: theme.$primary-700;
 
-        .cards {
-            display: flex;
-            flex-direction: column;
-        }
-    }
 
     .name {
         margin: 0;
