@@ -7,9 +7,9 @@
     import Card from "$lib/components/cards/Card.svelte";
     import EvoCard from "$lib/components/cards/EvoCard.svelte";
 
-    let { currentDeck, cards, repeat, support } = $props();
+    let { currentDeck, cards, repeat, support, opponent } = $props();
     if(!support){
-        support = {id: 159000004};
+        support = {id: 159000005};
         console.log("no support found, using default");
     }
     
@@ -25,6 +25,8 @@
         159000003:
             "https://game-assets.clashroyaleapp.com/97e7e4f5da14075417226853ec2c43591232cb64/image/chr_support_cards/support_card_hires_royal_chef.png",
         159000004:
+            "https://game-assets.clashroyaleapp.com/97e7e4f5da14075417226853ec2c43591232cb64/image/chr_support_cards/support_card_hires_royal_chef.png",
+        159000005:
             "",
     };
 
@@ -48,7 +50,8 @@
 <div class="deck-info">
     <div class="deck repeat{repeat}">
         <div class="support">
-            <img src={supporters[support.id]} alt="" />
+
+            <img style={opponent ? "transform: scaleX(-1)" : ""} src={supporters[support.id]} alt="" />
         </div>
         {#each currentDeck as card}
             {#if currentDeck[0] == card || currentDeck[1] == card}

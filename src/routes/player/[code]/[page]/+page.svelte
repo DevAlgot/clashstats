@@ -37,7 +37,8 @@
     <div class="upper">
     {#if currentPage === "battles"}
         <h2>Battle Log</h2>
-        {#each battlelog as battle}
+        {#each battlelog as battle,index (battle.battleTime)}
+            <p>{index}</p>
             <Match match={battle} />
         {/each}
     {:else if currentPage === "cards"}

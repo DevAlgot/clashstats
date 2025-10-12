@@ -7,15 +7,34 @@
     import { get } from "svelte/store";
 
     let { match } = $props();
+    console.log(match);
+    
 
     let deltaLevel = round(
         getAvrageLevel(match.team[0].cards) -
             getAvrageLevel(match.opponent[0].cards),
         1,
     );
+
+    let year = match.battleTime.substring(0, 4);
+    let month = match.battleTime.substring(4, 6);
+    let day = match.battleTime.substring(6, 8);
+    console.log(match.battleTime);
+    
+    
+    let date = year + "-" + month + "-" + day 
+
+    console.log("Date: " + date);
+    
 </script>
 
 <div class="match">
+    <section class="decks">
+    <h3>{match.team[0].name}</h3>
+    <h2>{match.team[0].crowns} - {match.opponent[0].crowns}</h2>
+    <h3>{match.opponent[0].name}</h3>
+    </section>
+
     <section class="postTrophies">
         <p class="trophies">
             {match.team[0].startingTrophies + match.team[0].trophyChange}
@@ -50,6 +69,7 @@
             support={match.opponent[0].supportCards[0]}
             title="Opponent's Deck"
             repeat={4}
+            opponent={true}
         />
     </section>
 </div>
@@ -79,8 +99,8 @@
             .deltaTrophies {
                 padding: 0.25rem;
                 display: flex;
-                background-color: theme.$neutral-800;
-                border-radius: 3px;
+                border-radius: 4px;
+                border: 1px solid theme.$accent-400;
             }
         }
 
