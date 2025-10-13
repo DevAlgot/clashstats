@@ -8,7 +8,6 @@
 
     let { match } = $props();
     console.log(match);
-    
 
     let deltaLevel = round(
         getAvrageLevel(match.team[0].cards) -
@@ -20,19 +19,25 @@
     let month = match.battleTime.substring(4, 6);
     let day = match.battleTime.substring(6, 8);
     console.log(match.battleTime);
-    
-    
-    let date = year + "-" + month + "-" + day 
+
+    let date = year + "-" + month + "-" + day;
 
     console.log("Date: " + date);
-    
 </script>
 
 <div class="match">
     <section class="decks">
-    <h3>{match.team[0].name}</h3>
-    <h2>{match.team[0].crowns} - {match.opponent[0].crowns}</h2>
-    <h3>{match.opponent[0].name}</h3>
+        <h3>
+            <a href="/player/{match.team[0].tag.replace('#', '')}"
+                >{match.team[0].name}</a
+            >
+        </h3>
+        <h2>{match.team[0].crowns} - {match.opponent[0].crowns}</h2>
+        <h3>
+            <a href="/player/{match.opponent[0].tag.replace('#', '')}"
+                >{match.opponent[0].name}</a
+            >
+        </h3>
     </section>
 
     <section class="postTrophies">
@@ -40,7 +45,11 @@
             {match.team[0].startingTrophies + match.team[0].trophyChange}
         </p>
 
-        <div class="deltaTrophies">
+        <div
+            class="deltaTrophies {match.team[0].trophyChange > 0
+                ? 'win'
+                : 'lose'}"
+        >
             <p>{match.team[0].startingTrophies}</p>
 
             {#if match.team[0].trophyChange > 0}
@@ -54,8 +63,8 @@
 
     <p>&Delta;Lvl: {deltaLevel}</p>
     <div class="info">
-    <p>{match.type}</p>
-    <p>{match.gameMode.name}</p>
+        <p>{match.type}</p>
+        <p>{match.gameMode.name}</p>
     </div>
     <section class="decks">
         <Deck
@@ -100,7 +109,12 @@
                 padding: 0.25rem;
                 display: flex;
                 border-radius: 4px;
-                border: 1px solid theme.$accent-400;
+                &.win {
+                    border: 1px solid theme.$accent-400;
+                }
+                &.lose {
+                    border: 1px solid red;
+                }
             }
         }
 
@@ -119,7 +133,7 @@
         justify-content: space-around;
         align-items: center;
         width: 100%;
-        gap: .6rem;
+        gap: 0.6rem;
 
         #separator {
             width: 7px;

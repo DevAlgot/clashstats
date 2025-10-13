@@ -6,13 +6,15 @@
 
     import Card from "$lib/components/cards/Card.svelte";
     import EvoCard from "$lib/components/cards/EvoCard.svelte";
+    import ElixirImage from "$lib/assets/elixir.png";
+    import LevelImage from "$lib/assets/level.png";
+    import Level from "./Level.svelte";
 
     let { currentDeck, cards, repeat, support, opponent } = $props();
-    if(!support){
-        support = {id: 159000005};
+    if (!support) {
+        support = { id: 159000005 };
         console.log("no support found, using default");
     }
-    
 
     //support cards, defiened to easier get the image.
     let supporters = {
@@ -26,46 +28,55 @@
             "https://game-assets.clashroyaleapp.com/97e7e4f5da14075417226853ec2c43591232cb64/image/chr_support_cards/support_card_hires_royal_chef.png",
         159000004:
             "https://game-assets.clashroyaleapp.com/97e7e4f5da14075417226853ec2c43591232cb64/image/chr_support_cards/support_card_hires_royal_chef.png",
-        159000005:
-            "",
+        159000005: "",
     };
 
     let sum = $state(0);
     let elixir = $state(0);
-    
 
     for (let i = 0; i < currentDeck.length; i++) {
-        sum += getLevel(currentDeck[i]); //grab the level of the card
-        elixir += currentDeck[i].elixirCost; // and the elixir cost
+        if (currentDeck[i].name != "Mirror") {
+            sum += getLevel(currentDeck[i]); //grab the level of the card
+            elixir += currentDeck[i].elixirCost; // and the elixir cost
+        } else {
+            elixir += 0;
+        }
     }
 
     // svelte-ignore state_referenced_locally
     let avgLevel = round(sum / currentDeck.length, 1);
     // svelte-ignore state_referenced_locally
     let avgElixir = round(elixir / currentDeck.length, 1);
-
-
 </script>
 
 <div class="deck-info">
     <div class="deck repeat{repeat}">
         <div class="support">
-
-            <img style={opponent ? "transform: scaleX(-1)" : ""} src={supporters[support.id]} alt="" />
+            <img
+                style={opponent ? "transform: scaleX(-1)" : ""}
+                src={supporters[support.id]}
+                alt=""
+            />
         </div>
         {#each currentDeck as card}
-            {#if currentDeck[0] == card || currentDeck[1] == card}
-                {#if card.evolutionLevel != null}
-                    <EvoCard {card}></EvoCard>
-                {:else}
-                    <Card {card}></Card>
-                {/if}
+            {#if card.evolutionLevel != null}
+                <EvoCard {card}></EvoCard>
             {:else}
                 <Card {card}></Card>
             {/if}
         {/each}
-        <p>Average Level: {avgLevel}</p>
-        <p>Average Elixir: {avgElixir}</p>
+
+        <div class="detail">
+            <section>
+                <img src={LevelImage} alt="" />
+                <p>{avgLevel}</p>
+            </section>
+
+            <section>
+                <img class="elixir" src={ElixirImage} alt="" />
+                <p>{avgElixir}</p>
+            </section>
+        </div>
     </div>
 </div>
 
@@ -92,18 +103,43 @@
 
         &.repeat8 {
             grid-template-columns: repeat(8, minmax(0, 1fr));
-            .support{
-                grid-column: 1/span 8 ;
+            .support {
+                grid-column: 1 / span 8;
             }
         }
         &.repeat4 {
             grid-template-columns: repeat(4, minmax(0, 1fr));
-        
-            .support{
-                grid-column: 1/span 4 ;
+
+            .support {
+                grid-column: 1 / span 4;
             }
         }
 
+        .detail {
+            display: flex;
+            align-items: center;
+            gap: 1.4rem;
+            margin: 0 0 10px 5px;
+
+            section {
+                display: inherit;
+                gap: 0.35rem;
+
+                p {
+                    text-wrap: nowrap;
+                    margin: 0;
+                }
+
+                img {
+                    height: 20px;
+                    width: auto;
+
+                    &.elixir {
+                        filter: brightness(1.6);
+                    }
+                }
+            }
+        }
         .support {
             margin-bottom: 10px;
             position: relative;

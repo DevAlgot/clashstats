@@ -17,36 +17,29 @@
     // For example:
     let player = data.profile;
     let battlelog = data.battlelog;
-    
-    
 
     let currentPage = params.page;
 </script>
 
 <svelte:head>
     <title
-        >{player.name} {player.tag} Clash Royale profile | Royalty Statistics</title
+        >{player.name}
+        {player.tag} Clash Royale profile | Royalty Statistics</title
     >
 </svelte:head>
 
 <main class="player">
     <br />
     <br />
-    <div class="upper">
-    <PlayerHead player = {player} code = {params.code} /></div>
-    <div class="upper">
-    {#if currentPage === "battles"}
+    <div class="upper head">
+        <PlayerHead {player} code={params.code} />
+    </div>
+    <div class="upper stats">
         <h2>Battle Log</h2>
-        {#each battlelog as battle,index (battle.battleTime)}
+        {#each battlelog as battle, index (battle.battleTime)}
             <p>{index}</p>
             <Match match={battle} />
         {/each}
-    {:else if currentPage === "cards"}
-        <h2>Cards</h2>
-        <p>Card collection coming soon...</p>
-    {:else}
-        <PlayerStats {player} />
-    {/if}
     </div>
 </main>
 
@@ -54,15 +47,27 @@
     @use "src/lib/css/colors.scss" as theme;
     main.player {
         display: block !important;
-        color: theme.$neutral-100;
+        color: var(--neutral-100);
     }
-        .upper {
-        border: 2px solid theme.$primary-400;
-        border-top: 2px solid theme.$primary-300;
+    .upper {
+        border: 2px solid var(--primary-400);
+
+        border-top: 2px solid var(--primary-300);
         padding: 1rem;
         border-radius: 8px;
         width: 60vw;
         margin: auto;
-        background-color: theme.$primary-700;
+        background-color: var(--primary-700);
+
+        &.head {
+            border-bottom: 0;
+            border-radius: 8px 8px 0 0;
+        }
+
+        &.stats {
+            border-bottom: 0;
+            border-top: 0;
+            border-radius: 0 0 8px 8px;
+        }
     }
 </style>

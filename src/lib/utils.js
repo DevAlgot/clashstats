@@ -65,3 +65,51 @@ export function getAvrageElixir(deck) {
     }
     return round(sum / deck.length, 1);
 }
+
+
+export function sortCards(e, cardsGroupedByLevel) {
+    console.log(e.target.value);
+    switch (e.target.value) {
+        case "rarity-asc":
+            for (let levelCards of cardsGroupedByLevel) {
+                levelCards.sort((a, b) => {
+                    if (rarityRank[a.rarity] === rarityRank[b.rarity]) {
+                        return a.elixirCost - b.elixirCost;
+                    }
+                    return rarityRank[a.rarity] - rarityRank[b.rarity];
+                });
+            }
+            break;
+        case "rarity-desc":
+            for (let levelCards of cardsGroupedByLevel) {
+                levelCards.sort((a, b) => {
+                    if (rarityRank[a.rarity] === rarityRank[b.rarity]) {
+                        return b.elixirCost - a.elixirCost;
+                    }
+                    return rarityRank[b.rarity] - rarityRank[a.rarity];
+                });
+            }
+            break;
+        case "elixir-asc":
+            for (let levelCards of cardsGroupedByLevel) {
+                levelCards.sort((a, b) => a.elixirCost - b.elixirCost);
+            }
+            break;
+        case "elixir-desc":
+            for (let levelCards of cardsGroupedByLevel) {
+                levelCards.sort((a, b) => b.elixirCost - a.elixirCost);
+            }
+
+        case "evo-asc":
+            for (let levelCards of cardsGroupedByLevel) {
+                levelCards.sort((a, b) => {
+                    if (a.evolutionLevel || a.maxEvolutionLevel) {
+                        return false;
+                    }
+                    return true;
+                });
+            }
+            break;
+    }
+    return cardsGroupedByLevel;
+}

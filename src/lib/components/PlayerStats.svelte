@@ -1,5 +1,5 @@
 <script>
-    import { round, getLevel, sortBy, rarityRank } from "$lib/utils";
+    import { round, getLevel, sortBy, rarityRank, sortCards } from "$lib/utils";
 
     import Deck from "$lib/components/Deck.svelte";
     import Card from "$lib/components/cards/Card.svelte";
@@ -75,69 +75,19 @@
         />
     </div>
 </div>
+<select name="sort" id="" onchange={(e) => sortCards(e, cardsGroupedByLevel)}>
+    <option value="rarity-asc">Rarity Ascending</option>
+    <option value="rarity-desc">Rarity Descending</option>
+    <option value="elixir-asc">Elixir Ascending</option>
+    <option value="elixir-desc">Elixir Descending</option>
+    <option value="evo-asc">Evolution Ascending</option>
+    <option value="evo-desc">Evolution Descending</option>
+</select>
 <section class="cards">
     {#each cardsGroupedByLevel as levelCards}
         <Level cards={levelCards}></Level>
     {/each}
 </section>
-
-<!-- svelte-ignore a11y_consider_explicit_label -->
-<button
-    onclick={() => {
-        for (let levelCards of cardsGroupedByLevel) {
-            // Sort each level group by rarity and then name
-            levelCards.sort((a, b) => {
-                if (rarityRank[a.rarity] === rarityRank[b.rarity]) {
-                    return a.elixirCost - b.elixirCost;
-                }
-                return rarityRank[b.rarity] - rarityRank[a.rarity];
-            });
-        }
-    }}
-    type="button"
-></button>
-
-<select name="sort" id="" onchange={(e) => {
-    console.log(e.target.value);
-    switch(e.target.value) {
-        case "rarity-asc":
-            for (let levelCards of cardsGroupedByLevel) {
-                levelCards.sort((a, b) => {
-                    if (rarityRank[a.rarity] === rarityRank[b.rarity]) {
-                        return a.elixirCost - b.elixirCost;
-                    }
-                    return rarityRank[a.rarity] - rarityRank[b.rarity];
-                });
-            }
-            break;
-        case "rarity-desc":
-            for (let levelCards of cardsGroupedByLevel) {
-                levelCards.sort((a, b) => {
-                    if (rarityRank[a.rarity] === rarityRank[b.rarity]) {
-                        return b.elixirCost - a.elixirCost;
-                    }
-                    return rarityRank[b.rarity] - rarityRank[a.rarity];
-                });
-            }
-            break;
-        case "elixir-asc":
-            for (let levelCards of cardsGroupedByLevel) {
-                levelCards.sort((a, b) => a.elixirCost - b.elixirCost);
-            }
-            break;
-        case "elixir-desc":
-            for (let levelCards of cardsGroupedByLevel) {
-                levelCards.sort((a, b) => b.elixirCost - a.elixirCost);
-            }
-            break;
-    }
-    
-}}>
-    <option value="rarity-asc">Rarity Ascending</option>
-    <option value="rarity-desc">Rarity Descending</option>
-    <option value="elixir-asc">Elixir Ascending</option>
-    <option value="elixir-desc">Elixir Descending</option>
-</select>
 
 <style lang="scss">
     @use "src/lib/css/colors.scss" as global;
@@ -151,24 +101,23 @@
             gap: 1rem;
 
             li {
-                color: global.$neutral-100;
-                background-image: url("$lib/assets/triangles.jpg");
+                color: var(--neutral-100);
                 background-size: cover;
                 background-image: linear-gradient(
-                        rgba(global.$primary-500, 0.85),
-                        rgba(global.$primary-500, 1)
+                        rgba(var(--primary-500), 0.85),
+                        rgba(var(--primary-500), 1)
                     ),
                     url("$lib/assets/triangles.jpg");
-                background-color: global.$primary-500;
+                background-color: var(--primary-500);
 
-                border: global.$primary-400 1px solid;
-                border-top: global.$primary-300 1px solid;
+                border: var(--primary-400 1px solid);
+                border-top: var(--primary-300 1px solid);
                 aspect-ratio: 1/1;
                 border-radius: 15px;
                 padding: 1rem;
 
                 .spacer {
-                    border-bottom: 1px solid global.$neutral-600;
+                    border-bottom: 1px solid var(--neutral-600);
                     width: 100%;
                     flex: 1;
                     margin: 0 5px 5px 5px;
