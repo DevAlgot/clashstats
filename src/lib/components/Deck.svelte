@@ -59,7 +59,7 @@
             />
         </div>
         {#each currentDeck as card}
-            {#if card.evolutionLevel != null}
+            {#if card.evolutionLevel != null && (currentDeck[0] === card || currentDeck[1] === card)}
                 <EvoCard {card}></EvoCard>
             {:else}
                 <Card {card}></Card>
@@ -81,7 +81,9 @@
 </div>
 
 <style lang="scss" global>
-    @use "src/lib/css/colors.scss" as global;
+    @use "src/lib/css/colors.scss" as *;
+
+    $color: rgba(var(--primary-300), 0.15);
 
     .deck-info {
         text-align: center;
@@ -91,15 +93,14 @@
 
     .deck {
         display: grid;
-        border: 1px solid global.$primary-400;
-        border-top: 1px solid global.$primary-300;
         border-radius: 15px;
         padding: 15px 9px 0px 9px;
-        background-color: global.$primary-500;
+        background-color: var(--neutral-300);
         background-image: url("$lib/assets/wallpaper.jpg");
         background-size: cover;
-        background-image: linear-gradient(#331347d2, global.$primary-500),
-            url("$lib/assets/wallpaper.jpg");
+        background-image: url("$lib/assets/wallpaper.jpg"),
+            linear-gradient($color, var(--primary-300));
+        color: var(--neutral-900);
 
         &.repeat8 {
             grid-template-columns: repeat(8, minmax(0, 1fr));

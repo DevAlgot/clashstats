@@ -16,8 +16,13 @@ export async function load({ params }) {
     const profileRes = await fetch(profileUrl, options);
     const profile = await profileRes.json();
 
+    // Fetch player battlelog
+    const battlelogUrl = `https://proxy.royaleapi.dev/v1/players/%23${encodeURIComponent(params.code)}/battlelog`;
+    const battlelogRes = await fetch(battlelogUrl, options);
+    const battlelog = await battlelogRes.json();
 
     return {
-        profile
+        profile,
+        battlelog
     };
 }

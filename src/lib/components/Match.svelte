@@ -7,7 +7,6 @@
     import { get } from "svelte/store";
 
     let { match } = $props();
-    console.log(match);
 
     let deltaLevel = round(
         getAvrageLevel(match.team[0].cards) -
@@ -22,7 +21,7 @@
 
     let date = year + "-" + month + "-" + day;
 
-    console.log("Date: " + date);
+    console.log(match.opponent[0].clan);
 </script>
 
 <div class="match">
@@ -84,13 +83,15 @@
 </div>
 
 <style lang="scss">
-    @use "src/lib/css/colors.scss" as theme;
+    @use "src/lib/css/colors.scss" as *;
+    @use "src/lib/css/global.scss" as *;
 
     .match {
+        @extend .shadow;
         border-radius: 8px;
         padding: 1rem;
         margin-bottom: 1rem;
-        background-color: theme.$primary-600;
+        background-color: var(--neutral-100);
         .trophies {
             margin: 0;
             font-weight: bold;
@@ -110,7 +111,7 @@
                 display: flex;
                 border-radius: 4px;
                 &.win {
-                    border: 1px solid theme.$accent-400;
+                    border: 1px solid var(--accent-400);
                 }
                 &.lose {
                     border: 1px solid red;
@@ -138,7 +139,7 @@
         #separator {
             width: 7px;
             height: inherit;
-            background-color: theme.$neutral-700;
+            background-color: var(--neutral-700);
             align-self: stretch;
             border-radius: 10px;
         }

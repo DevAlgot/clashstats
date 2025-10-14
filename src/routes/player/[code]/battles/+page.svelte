@@ -50,9 +50,6 @@
         color: var(--neutral-100);
     }
     .upper {
-        border: 2px solid var(--primary-400);
-
-        border-top: 2px solid var(--primary-300);
         padding: 1rem;
         border-radius: 8px;
         width: 60vw;
@@ -68,6 +65,8 @@
             border-bottom: 0;
             border-top: 0;
             border-radius: 0 0 8px 8px;
+            background-color: var(--neutral-200);
+            color: var(--neutral-900);
         }
     }
 </style>

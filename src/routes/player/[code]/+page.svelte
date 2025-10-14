@@ -19,6 +19,7 @@
     let battlelog = data.battlelog;
 
     let currentPage = params.page;
+    console.log(player);
 </script>
 
 <svelte:head>
@@ -35,18 +36,7 @@
         <PlayerHead {player} code={params.code} />
     </div>
     <div class="upper stats">
-        {#if currentPage === "battles"}
-            <h2>Battle Log</h2>
-            {#each battlelog as battle, index (battle.battleTime)}
-                <p>{index}</p>
-                <Match match={battle} />
-            {/each}
-        {:else if currentPage === "cards"}
-            <h2>Cards</h2>
-            <p>Card collection coming soon...</p>
-        {:else}
-            <PlayerStats {player} />
-        {/if}
+        <PlayerStats {player} />
     </div>
 </main>
 
@@ -57,9 +47,6 @@
         color: var(--neutral-100);
     }
     .upper {
-        border: 2px solid var(--primary-400);
-
-        border-top: 2px solid var(--primary-300);
         padding: 1rem;
         border-radius: 8px;
         width: 60vw;
@@ -75,6 +62,7 @@
             border-bottom: 0;
             border-top: 0;
             border-radius: 0 0 8px 8px;
+            background-color: var(--neutral-200);
         }
     }
 </style>

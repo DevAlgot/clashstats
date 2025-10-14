@@ -1,0 +1,131 @@
+<script>
+    import { page } from "$app/state";
+    import { get } from "svelte/store";
+    import { round, getLevel, sortBy, rarityRank, sortCards } from "$lib/utils";
+
+    import "$lib/css/global.scss";
+    import "$lib/css/player.scss";
+
+    import PlayerStats from "$lib/components/PlayerStats.svelte";
+    import PlayerHead from "$lib/components/PlayerHead.svelte";
+    import Match from "$lib/components/Match.svelte";
+    import Level from "$lib/components/Level.svelte";
+
+    let { data, params } = $props();
+
+    // Now you can access data returned from +page.server.js via the `data` prop
+    // For example:
+    let player = data.profile;
+    let battlelog = data.battlelog;
+
+    let cardsByLevel = {};
+
+    // Group cards by their level
+    for (let card of player.cards) {
+        const level = getLevel(card);
+        if (!cardsByLevel[level]) {
+            cardsByLevel[level] = [];
+        }
+        cardsByLevel[level].push(card);
+    }
+
+    // The card by level, a "2d" array
+    let cardsGroupedByLevel = $state(Object.values(cardsByLevel).reverse());
+
+    for (let levelCards of cardsGroupedByLevel) {
+        // Sort each level group by rarity and then name
+        levelCards.sort((a, b) => {
+            if (rarityRank[a.rarity] === rarityRank[b.rarity]) {
+                return b.elixirCost - a.elixirCost;
+            }
+            return rarityRank[b.rarity] - rarityRank[a.rarity];
+        });
+    }
+</script>
+
+<svelte:head>
+    <title
+        >{player.name}
+        {player.tag} Clash Royale profile | Royalty Statistics</title
+    >
+</svelte:head>
+
+<main class="player">
+    <br />
+    <br />
+    <div class="upper head">
+        <PlayerHead {player} code={params.code} />
+    </div>
+    <div class="upper stats">
+        <section class="cards">
+            <select
+                name="sort"
+                id=""
+                onchange={(e) => sortCards(e, cardsGroupedByLevel)}
+            >
+                <option value="rarity-asc">Rarity Ascending</option>
+                <option value="rarity-desc">Rarity Descending</option>
+                <option value="elixir-asc">Elixir Ascending</option>
+                <option value="elixir-desc">Elixir Descending</option>
+                <option value="evo-asc">Evolution Ascending</option>
+                <option value="evo-desc">Evolution Descending</option>
+            </select>
+
+            {#each cardsGroupedByLevel as levelCards}
+                <Level cards={levelCards}></Level>
+            {/each}
+        </section>
+    </div>
+</main>
+
+<style lang="scss">
+    @use "src/lib/css/colors.scss" as theme;
+    main.player {
+        display: block !important;
+        color: var(--neutral-100);
+    }
+    .upper {
+        padding: 1rem;
+        border-radius: 8px;
+        width: 60vw;
+        margin: auto;
+        background-color: var(--primary-700);
+
+        &.head {
+            border-bottom: 0;
+            border-radius: 8px 8px 0 0;
+        }
+
+        &.stats {
+            border-bottom: 0;
+            border-top: 0;
+            border-radius: 0 0 8px 8px;
+            background-color: var(--neutral-200);
+            color: var(--neutral-900);
+        }
+    }
+    .cards {
+        margin-top: 1rem;
+        color: var(--neutral-800);
+
+        select {
+            background-color: var(--accent-300);
+            border: 1px solid var(--accent-600);
+            border-top: 1px solid var(--accent-400);
+            padding: 0.5rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            color: var(--neutral-900);
+
+            &:focus {
+                outline: none;
+            }
+
+            option {
+                background-color: var(--primary-900);
+                color: var(--neutral-800);
+            }
+        }
+    }
+</style>

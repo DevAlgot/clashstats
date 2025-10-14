@@ -9,7 +9,7 @@
 <a href="../card/{card.name}">
     <div id="card">
         <img
-            src="https://cdn.statsroyale.com/v6/cards/full/{card.id}.png"
+            src="https://cdn.statsroyale.com/v6/cards/full_b/{card.id}.png"
             alt=""
             srcset=""
         />

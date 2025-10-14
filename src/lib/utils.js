@@ -92,14 +92,30 @@ export function sortCards(e, cardsGroupedByLevel) {
             break;
         case "elixir-asc":
             for (let levelCards of cardsGroupedByLevel) {
-                levelCards.sort((a, b) => a.elixirCost - b.elixirCost);
+                levelCards.sort((a, b) => {
+                    const costA = a.elixirCost ?? 0;
+                    const costB = b.elixirCost ?? 0;
+
+                    if (costA === costB) {
+                        return rarityRank[a.rarity] - rarityRank[b.rarity];
+                    }
+                    return costA - costB;
+                });
             }
             break;
         case "elixir-desc":
             for (let levelCards of cardsGroupedByLevel) {
-                levelCards.sort((a, b) => b.elixirCost - a.elixirCost);
-            }
+                levelCards.sort((b, a) => {
+                    const costA = a.elixirCost ?? 0;
+                    const costB = b.elixirCost ?? 0;
 
+                    if (costA === costB) {
+                        return rarityRank[a.rarity] - rarityRank[b.rarity];
+                    }
+                    return costA - costB;
+                });
+            }
+            break;
         case "evo-asc":
             for (let levelCards of cardsGroupedByLevel) {
                 levelCards.sort((a, b) => {
@@ -112,4 +128,11 @@ export function sortCards(e, cardsGroupedByLevel) {
             break;
     }
     return cardsGroupedByLevel;
+}
+
+
+export const roles = {
+    "member": "Member",
+    "coLeader": "Co-Leader",
+    "leader": "Leader"
 }
