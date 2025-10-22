@@ -68,7 +68,6 @@ export function getAvrageElixir(deck) {
 
 
 export function sortCards(e, cardsGroupedByLevel) {
-    console.log(e.target.value);
     switch (e.target.value) {
         case "rarity-asc":
             for (let levelCards of cardsGroupedByLevel) {
@@ -96,9 +95,7 @@ export function sortCards(e, cardsGroupedByLevel) {
                     const costA = a.elixirCost ?? 0;
                     const costB = b.elixirCost ?? 0;
 
-                    if (costA === costB) {
-                        return rarityRank[a.rarity] - rarityRank[b.rarity];
-                    }
+
                     return costA - costB;
                 });
             }
@@ -109,7 +106,7 @@ export function sortCards(e, cardsGroupedByLevel) {
                     const costA = a.elixirCost ?? 0;
                     const costB = b.elixirCost ?? 0;
 
-                    if (costA === costB) {
+                    if (costA == costB) {
                         return rarityRank[a.rarity] - rarityRank[b.rarity];
                     }
                     return costA - costB;
@@ -119,10 +116,9 @@ export function sortCards(e, cardsGroupedByLevel) {
         case "evo-asc":
             for (let levelCards of cardsGroupedByLevel) {
                 levelCards.sort((a, b) => {
-                    if (a.evolutionLevel || a.maxEvolutionLevel) {
-                        return false;
-                    }
-                    return true;
+                    if (a.evolutionLevel) return 3;
+                    else if (a.maxEvolutionLevel) return 2;
+                    return 1;
                 });
             }
             break;
@@ -134,5 +130,30 @@ export function sortCards(e, cardsGroupedByLevel) {
 export const roles = {
     "member": "Member",
     "coLeader": "Co-Leader",
-    "leader": "Leader"
+    "leader": "Leader",
+    "elder": "Elder"
+}
+
+export function getTimeAgo(battleTimeString) {
+    let year = battleTimeString.substring(0, 4);
+    let month = battleTimeString.substring(4, 6);
+    let day = battleTimeString.substring(6, 8);
+    let hour = parseInt(battleTimeString.substring(9, 11)) + 2;
+    let minute = battleTimeString.substring(11, 13);
+    let second = battleTimeString.substring(13, 15);
+
+    const battleTime = new Date(year, month - 1, day, hour, minute, second);
+    const now = new Date();
+    const diffInDays = Math.floor((now - battleTime) / (1000 * 60 * 60 * 24));
+    const diffInHours = Math.floor((now - battleTime) / (1000 * 60 * 60));
+    const diffInMinutes = Math.floor((now - battleTime) / (1000 * 60));
+
+    if (diffInMinutes < 1) return 'just now';
+    if (diffInMinutes < 60) return `${diffInMinutes} minute${diffInMinutes > 1 ? 's' : ''} ago`;
+    if (diffInHours < 24) return `${diffInHours} hour${diffInHours > 1 ? 's' : ''} ago`;
+    if (diffInDays === 1) return 'yesterday';
+    if (diffInDays < 7) return `${diffInDays} days ago`;
+    if (diffInDays < 30) return `${Math.floor(diffInDays / 7)} week${Math.floor(diffInDays / 7) > 1 ? 's' : ''} ago`;
+    if (diffInDays < 365) return `${Math.floor(diffInDays / 30)} month${Math.floor(diffInDays / 30) > 1 ? 's' : ''} ago`;
+    return `${Math.floor(diffInDays / 365)} year${Math.floor(diffInDays / 365) > 1 ? 's' : ''} ago`;
 }

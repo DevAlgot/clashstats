@@ -26,9 +26,9 @@
             <button on:click={searchPlayer}>Search</button>
         </div>
         <br />
-        <a href="/player/89PY22Q89/profile">Check birb's stats</a>
-        <a href="/player/2ULJU2RQG/profile">Check out Carlo's stats</a>
-        <a href="/player/RV08Y88/profile">Check out Linkan's stats</a>
+        <a href="/player/89PY22Q89">Check birb's stats</a>
+        <a href="/player/2ULJU2RQG">Check out Carlo's stats</a>
+        <a href="/player/RV08Y88">Check out Linkan's stats</a>
     </section>
 </main>
 

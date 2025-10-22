@@ -4,15 +4,13 @@
     import "$lib/css/card.scss";
 
     let { card } = $props();
+
+    let cardImage = `/src/lib/assets/images/cards/card${card.id}.png`;
 </script>
 
 <a href="../card/{card.name}">
     <div id="card">
-        <img
-            src="https://cdn.statsroyale.com/v6/cards/full_b/{card.id}.png"
-            alt=""
-            srcset=""
-        />
+        <img src={cardImage} alt="" srcset="" />
         <p>Level {card.level + (14 - card.maxLevel)}</p>
     </div>
 </a>

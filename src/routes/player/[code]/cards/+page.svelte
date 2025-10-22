@@ -41,6 +41,7 @@
             return rarityRank[b.rarity] - rarityRank[a.rarity];
         });
     }
+    console.log(data);
 </script>
 
 <svelte:head>
@@ -109,17 +110,21 @@
         color: var(--neutral-800);
 
         select {
-            background-color: var(--accent-300);
-            border: 1px solid var(--accent-600);
-            border-top: 1px solid var(--accent-400);
+            background-color: var(--primary-300);
+            border: none;
             padding: 0.5rem;
             border-radius: 8px;
             margin-bottom: 1rem;
             font-size: 1rem;
             color: var(--neutral-900);
+            border-bottom: 5px solid var(--primary-600);
 
             &:focus {
                 outline: none;
+            }
+
+            &:active {
+                color: white;
             }
 
             option {

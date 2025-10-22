@@ -19,6 +19,8 @@
     let battlelog = data.battlelog;
 
     let currentPage = params.page;
+
+    console.log(battlelog[0]);
 </script>
 
 <svelte:head>
@@ -37,7 +39,6 @@
     <div class="upper stats">
         <h2>Battle Log</h2>
         {#each battlelog as battle, index (battle.battleTime)}
-            <p>{index}</p>
             <Match match={battle} />
         {/each}
     </div>

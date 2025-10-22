@@ -10,10 +10,19 @@
 
     // If you want a flat array of all cards (already in player.cards)
     let allCards = sortBy(player.cards, 0, false);
+
+    let urlToFavorite = player.currentFavouriteCard.name
+        .replace(/\s+/g, "_")
+        .toLowerCase();
 </script>
 
 <div class="player-stats">
     <section>
+        <img
+            id="favorite"
+            src="https://cdn.statsroyale.com/v5/image/chr/{urlToFavorite}_dl.png"
+            alt=""
+        />
         <ul>
             <li>
                 <h2><strong>Trophies:</strong></h2>
@@ -35,13 +44,6 @@
                 <h2><strong>Losses:</strong></h2>
                 <p>{player.losses}</p>
             </li>
-            <li>
-                <h2><strong>Favorite card:</strong></h2>
-                <p>
-                    {player.currentFavouriteCard.name}
-                </p>
-                <!---->
-            </li>
         </ul>
     </section>
     <section>
@@ -57,7 +59,14 @@
     </section>
     <section>
         <ul>
-            <li><h3>General</h3></li>
+            <li>
+                <h3>General</h3>
+                <ul>
+                    <li>Trophies: {player.trophies}</li>
+                    <li>PB: {player.bestTrophies}</li>
+                    <li>Three Crown Wins: {player.threeCrownWins}</li>
+                </ul>
+            </li>
             <li><h3>Goblin Arena</h3></li>
             <li><h3>Ranked</h3></li>
         </ul>
@@ -94,6 +103,15 @@
     .player-stats {
         section {
             border-bottom: 1px dotted var(--neutral-300);
+            position: relative;
+
+            #favorite {
+                position: absolute;
+                right: 0;
+                top: -100%;
+                width: 25%;
+                transform: scaleX(-1);
+            }
         }
 
         #current-deck {
@@ -105,7 +123,7 @@
             padding: 0;
             width: 100%;
             display: grid;
-            grid-template-columns: repeat(6, minmax(0, 1fr));
+            grid-template-columns: repeat(5, minmax(0, 1fr));
             gap: 1rem;
 
             li {
@@ -194,11 +212,9 @@
                 width: 100%;
                 text-align: center;
                 backdrop-filter: brightness(0.9);
-                box-shadow: 0px 3px 4px var(--primary-200) inset;
+                box-shadow: 0px 3px 4px var(--primary-400) inset;
                 border-radius: 8px;
-                border-bottom: 1px solid var(--primary-400);
-                color: black;
-                text-shadow: 0 0 3px white;
+                color: var(--neutral-900);
             }
 
             p {

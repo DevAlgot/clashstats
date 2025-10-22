@@ -3,10 +3,21 @@
     import { sortBy } from "$lib/utils.js";
     import Deck from "$lib/components/Deck.svelte";
     import Level from "$lib/components/Level.svelte";
-    import { rarityRank, getAvrageLevel, round } from "$lib/utils.js";
+    import PlayerMatch from "$lib/components/PlayerMatch.svelte";
+    import {
+        rarityRank,
+        getAvrageLevel,
+        round,
+        getTimeAgo,
+    } from "$lib/utils.js";
     import { get } from "svelte/store";
 
+    import redCrown from "$lib/assets/red-crown.png";
+    import blueCrown from "$lib/assets/blue-crown.png";
+
     let { match } = $props();
+
+    const now = new Date();
 
     let deltaLevel = round(
         getAvrageLevel(match.team[0].cards) -
@@ -17,69 +28,70 @@
     let year = match.battleTime.substring(0, 4);
     let month = match.battleTime.substring(4, 6);
     let day = match.battleTime.substring(6, 8);
-    console.log(match.battleTime);
 
-    let date = year + "-" + month + "-" + day;
+    let hour = parseInt(match.battleTime.substring(9, 11)) + 2;
+    let minute = match.battleTime.substring(11, 13);
+    let second = match.battleTime.substring(13, 15);
 
-    console.log(match.opponent[0].clan);
+    const battleTime = new Date(year, month, day, hour, minute, second);
+
+    let date =
+        year +
+        "-" +
+        month +
+        "-" +
+        day +
+        "  " +
+        hour +
+        ":" +
+        minute +
+        ":" +
+        second;
 </script>
 
 <div class="match">
-    <section class="decks">
-        <h3>
-            <a href="/player/{match.team[0].tag.replace('#', '')}"
-                >{match.team[0].name}</a
-            >
-        </h3>
-        <h2>{match.team[0].crowns} - {match.opponent[0].crowns}</h2>
-        <h3>
-            <a href="/player/{match.opponent[0].tag.replace('#', '')}"
-                >{match.opponent[0].name}</a
-            >
-        </h3>
-    </section>
-
-    <section class="postTrophies">
-        <p class="trophies">
-            {match.team[0].startingTrophies + match.team[0].trophyChange}
-        </p>
-
-        <div
-            class="deltaTrophies {match.team[0].trophyChange > 0
-                ? 'win'
-                : 'lose'}"
-        >
-            <p>{match.team[0].startingTrophies}</p>
-
-            {#if match.team[0].trophyChange > 0}
-                <p>+</p>
-            {:else if match.team[0].trophyChange === 0}
-                <p>▬</p>
-            {/if}
-            <p>{match.team[0].trophyChange}</p>
-        </div>
-    </section>
-
-    <p>&Delta;Lvl: {deltaLevel}</p>
     <div class="info">
-        <p>{match.type}</p>
-        <p>{match.gameMode.name}</p>
+        <h3>{match.gameMode.name}</h3>
+        <div>
+            <img src={blueCrown} alt="" />
+            <p>{match.team[0].crowns} - {match.opponent[0].crowns}</p>
+            <img src={redCrown} alt="" />
+        </div>
     </div>
+
     <section class="decks">
-        <Deck
-            currentDeck={match.team[0].cards}
-            support={match.team[0].supportCards[0]}
-            title="Your Deck"
-            repeat={4}
-        />
-        <Deck
-            currentDeck={match.opponent[0].cards}
-            support={match.opponent[0].supportCards[0]}
-            title="Opponent's Deck"
-            repeat={4}
-            opponent={true}
-        />
+        <section class="team">
+            <PlayerMatch player={match.team[0]}></PlayerMatch>
+            <Deck
+                currentDeck={match.team[0].cards}
+                support={match.team[0].supportCards[0]}
+                title="Your Deck"
+                repeat={4}
+            />
+        </section>
+        <div id="middle">
+            <p>vs</p>
+            <div id="separator"></div>
+        </div>
+        <section class="opponent">
+            <PlayerMatch player={match.opponent[0]} opponent={true}
+            ></PlayerMatch>
+            <Deck
+                currentDeck={match.opponent[0].cards}
+                support={match.opponent[0].supportCards[0]}
+                title="Opponent's Deck"
+                repeat={4}
+                opponent={true}
+            />
+        </section>
     </section>
+    <div id="bottom">
+        <p>&Delta;Lvl: {deltaLevel}</p>
+        <section id="time">
+            <p>{getTimeAgo(match.battleTime)}</p>
+            <div id="tooltip">{date}</div>
+        </section>
+    </div>
 </div>
 
 <style lang="scss">
@@ -98,33 +110,8 @@
             margin-right: 0.5rem !important;
         }
 
-        .postTrophies {
-            display: flex;
-            align-items: center;
-
-            p {
-                margin: 0;
-            }
-
-            .deltaTrophies {
-                padding: 0.25rem;
-                display: flex;
-                border-radius: 4px;
-                &.win {
-                    border: 1px solid var(--accent-400);
-                }
-                &.lose {
-                    border: 1px solid red;
-                }
-            }
-        }
-
-        .info {
-            text-align: center;
-            gap: 1rem;
-            p {
-                margin: 0;
-            }
+        p {
+            margin: 0;
         }
     }
 
@@ -136,12 +123,58 @@
         width: 100%;
         gap: 0.6rem;
 
-        #separator {
-            width: 7px;
-            height: inherit;
-            background-color: var(--neutral-700);
+        #middle {
+            display: flex;
+            flex-direction: column;
             align-self: stretch;
-            border-radius: 10px;
+            align-items: center;
+            color: var(--neutral-600);
+
+            #separator {
+                width: 1px;
+                height: 100%;
+                background-color: var(--neutral-400);
+                align-self: stretch;
+                border-radius: 10px;
+                margin: auto;
+            }
+        }
+    }
+    .info {
+        text-align: center;
+        gap: 1rem;
+        p {
+            margin: 0;
+        }
+    }
+
+    #bottom {
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        color: var(--neutral-700);
+
+        #time {
+            #tooltip {
+                opacity: 0;
+                position: absolute;
+                top: -120%;
+                right: 0;
+                transform: translate(25%, -50%) scale(0.6);
+                background-color: var(--neutral-200);
+                box-shadow: 0 0 3px 0 var(--neutral-500);
+                padding: 0.75rem;
+                border-radius: 5px;
+                transition: all 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
+                pointer-events: none;
+            }
+
+            &:hover #tooltip {
+                opacity: 1;
+                transform: scale(1) translate(25%, -50%);
+                pointer-events: all;
+            }
         }
     }
 </style>

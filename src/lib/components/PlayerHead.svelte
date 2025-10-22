@@ -1,10 +1,32 @@
 <script>
-    let { data, code, player } = $props();
+    let { data, code, player, params } = $props();
     import { roles } from "$lib/utils";
+    import { page } from "$app/state";
 
     let urlToFavorite = player.currentFavouriteCard.name
         .replace(/\s+/g, "_")
         .toLowerCase();
+
+    let arena = player.arena.id - (54000000 - 3);
+    let style = $state("");
+    if (player.arena.id == 54000031) {
+        arena = 24;
+        style = `
+            width: 169px;
+            right: -1px;
+            bottom: 0;
+        `;
+    }
+    if (player.arena.id == 54000020) {
+        style = `
+            width: 141px;
+            right: -1px;
+            bottom: 0;
+        `;
+    }
+
+    console.log(page.url.pathname === "/player/" + code + "/cards");
+    let arenaUrl = `/src/lib/assets/images/arenas/arena${arena}.png`;
 </script>
 
 <section class="header">
@@ -25,16 +47,20 @@
         </div>
     </section>
 
-    <img
-        id="favorite"
-        src="https://cdn.statsroyale.com/v5/image/chr/{urlToFavorite}_dl.png"
-        alt=""
-    />
+    <img id="arena" src={arenaUrl} {style} alt="" />
 </section>
 <div id="nav">
-    <a href="./">Profile</a><a href="{code}/battles">Battles</a><a
-        href="{code}/cards">Cards</a
-    >
+    {#if page.url.pathname == "/player/" + code}
+        <a href="./">Profile</a><a href="{code}/battles">Battles</a><a
+            href="{code}/cards">Cards</a
+        >
+    {:else if page.url.pathname == "/player/" + code + "/battles"}
+        <a href="./">Profile</a><a href="./">Battles</a><a href="cards">Cards</a
+        >
+    {:else if page.url.pathname == "/player/" + code + "/cards"}
+        <a href="./">Profile</a><a href="battles">Battles</a><a href="">Cards</a
+        >
+    {/if}
 </div>
 
 <style lang="scss">
@@ -60,14 +86,26 @@
         height: 160px;
         color: var(--neutral-100);
 
-        #favorite {
+        #favorite,
+        #arena {
             width: 362px;
             height: auto;
             float: right;
             margin: 0 auto;
             bottom: -25px;
             position: absolute;
-            right: -16px;
+        }
+
+        #arena {
+            width: 200px;
+            right: -18px;
+            bottom: -0;
+        }
+
+        #favorite {
+            display: none;
+            right: 50%;
+            transform: translateX(50%);
         }
 
         #player-info {
@@ -94,7 +132,6 @@
     #nav {
         margin: -1rem;
         background-color: var(--primary-700);
-        border: 1px solid var(--primary-600);
         border-top: 1px solid var(--primary-400);
         border-right: 0;
         border-left: 0;

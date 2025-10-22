@@ -35,8 +35,9 @@
     let elixir = $state(0);
 
     for (let i = 0; i < currentDeck.length; i++) {
+        sum += getLevel(currentDeck[i]); //grab the level of the card
+
         if (currentDeck[i].name != "Mirror") {
-            sum += getLevel(currentDeck[i]); //grab the level of the card
             elixir += currentDeck[i].elixirCost; // and the elixir cost
         } else {
             elixir += 0;
@@ -95,12 +96,9 @@
         display: grid;
         border-radius: 15px;
         padding: 15px 9px 0px 9px;
-        background-color: var(--neutral-300);
-        background-image: url("$lib/assets/wallpaper.jpg");
         background-size: cover;
-        background-image: url("$lib/assets/wallpaper.jpg"),
-            linear-gradient($color, var(--primary-300));
         color: var(--neutral-900);
+        background: linear-gradient(var(--neutral-300), var(--neutral-100));
 
         &.repeat8 {
             grid-template-columns: repeat(8, minmax(0, 1fr));
