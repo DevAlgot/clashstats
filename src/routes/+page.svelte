@@ -4,7 +4,7 @@
 
     function searchPlayer() {
         if (searchTag.trim()) {
-            window.location.href = `/player/${searchTag.trim().toUpperCase()}/profile`;
+            window.location.href = `/player/${searchTag.trim().toUpperCase()}`;
         }
     }
 </script>

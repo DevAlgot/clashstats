@@ -36,11 +36,11 @@
         <div id="clan">
             <img
                 src="https://cdn.statsroyale.com/images/badges/{player?.clan
-                    ?.badgeId}.png"
+                    ?.badgeId ?? '0'}.png"
                 alt=""
             />
             <p>
-                <a href="">{player?.clan?.name ?? "No clan"}</a> | {roles?.[
+                <a href="">{player?.clan?.name ?? "No clan"}</a> <br />{roles?.[
                     player?.role
                 ] ?? ""}
             </p>
@@ -122,7 +122,7 @@
                     }
                 }
                 img {
-                    height: 40px;
+                    height: 52px;
                     width: auto;
                 }
             }

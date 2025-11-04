@@ -1,24 +1,32 @@
 <script>
     let { player, opponent } = $props();
+    import trophy from "$lib/assets/trophy.png";
 
     let badgeId = $state(0);
     if (player.clan != null) badgeId = player.clan.badgeId;
 </script>
 
 <section class="{opponent ? 'opponent' : 'team'} stats">
-    <h2>
-        <a href="/player/{player.tag.replace('#', '')}">{player.name}</a>
-    </h2>
-    <h3>
+    <div id="player">
         <img
             src="https://cdn.statsroyale.com/images/badges/{badgeId}.png"
             alt=""
         />
-        <a href="/clan/{player?.clan?.tag}">
-            {player?.clan?.name ? player.clan.name : "No clan"}
-        </a>
-    </h3>
+        <div>
+            <h2>
+                <a href="/player/{player.tag.replace('#', '')}">{player.name}</a
+                >
+            </h2>
+            <h3>
+                <a href="/clan/{player?.clan?.tag}">
+                    {player?.clan?.name ? player.clan.name : "No clan"}
+                </a>
+            </h3>
+        </div>
+    </div>
+
     <section class="postTrophies">
+        <img src={trophy} alt="" />
         <p class="trophies">
             {player.startingTrophies + player.trophyChange}
         </p>
@@ -47,7 +55,12 @@
     .opponent {
         align-items: end;
 
-        h3 {
+        #player {
+            flex-direction: row-reverse;
+            text-align: end;
+        }
+
+        .postTrophies {
             flex-direction: row-reverse;
         }
     }
@@ -60,15 +73,16 @@
         }
     }
 
-    h3 {
+    #player {
         display: flex;
         align-items: center;
         font-size: smaller;
-        font-weight: 500;
         gap: 0.4rem;
-
+        h3 {
+            font-weight: 500;
+        }
         img {
-            width: 20px;
+            width: 40px;
         }
     }
 
@@ -80,6 +94,10 @@
 
         p {
             margin: 0;
+        }
+
+        img {
+            width: 25px;
         }
 
         .deltaTrophies {

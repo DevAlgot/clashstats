@@ -16,6 +16,7 @@
     import blueCrown from "$lib/assets/blue-crown.png";
 
     let { match } = $props();
+    const win = match.opponent[0].crowns < match.team[0].crowns;
 
     const now = new Date();
 
@@ -47,9 +48,13 @@
         minute +
         ":" +
         second;
+
+    if (match.gameMode.name == "PickMode") {
+        console.log(match);
+    }
 </script>
 
-<div class="match">
+<div class="match {win ? 'win' : 'lose'}">
     <div class="info">
         <h3>{match.gameMode.name}</h3>
         <div>
@@ -97,6 +102,14 @@
 <style lang="scss">
     @use "src/lib/css/colors.scss" as *;
     @use "src/lib/css/global.scss" as *;
+
+    .lose {
+        border-top: 5px solid red;
+    }
+
+    .win {
+        border-top: 5px solid #83bf26;
+    }
 
     .match {
         @extend .shadow;
@@ -147,17 +160,15 @@
             margin: 0;
         }
 
-        div{
+        div {
             display: flex;
             align-items: center;
             justify-content: center;
 
-            img{
+            img {
                 width: 50px;
             }
         }
-
-
     }
 
     #bottom {
@@ -174,7 +185,7 @@
                 top: -120%;
                 right: 0;
                 transform: translate(25%, -50%) scale(0.6);
-                background-color: var(--neutral-200);
+                background-color: var(--neutral-100);
                 box-shadow: 0 0 3px 0 var(--neutral-500);
                 padding: 0.75rem;
                 border-radius: 5px;
