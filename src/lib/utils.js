@@ -116,13 +116,25 @@ export function sortCards(e, cardsGroupedByLevel) {
         case "evo-asc":
             for (let levelCards of cardsGroupedByLevel) {
                 levelCards.sort((a, b) => {
-                    if (a.evolutionLevel) return 3;
-                    else if (a.maxEvolutionLevel) return 2;
-                    return 1;
+                    const evoA = a.evolutionLevel ? 3 : a.maxEvolutionLevel ?? 0;
+                    const evoB = b.evolutionLevel ? 3 : b.maxEvolutionLevel ?? 0;
+
+                    return evoB - evoA;
                 });
             }
             break;
     }
+
+    for (let i = 0; i < cardsGroupedByLevel.length; i++) {
+        console.log(cardsGroupedByLevel[i]);
+
+        cardsGroupedByLevel[i].forEach(card => {
+            console.log(card.elixirCost);
+
+        });
+
+    }
+
     return cardsGroupedByLevel;
 }
 
@@ -156,4 +168,9 @@ export function getTimeAgo(battleTimeString) {
     if (diffInDays < 30) return `${Math.floor(diffInDays / 7)} week${Math.floor(diffInDays / 7) > 1 ? 's' : ''} ago`;
     if (diffInDays < 365) return `${Math.floor(diffInDays / 30)} month${Math.floor(diffInDays / 30) > 1 ? 's' : ''} ago`;
     return `${Math.floor(diffInDays / 365)} year${Math.floor(diffInDays / 365) > 1 ? 's' : ''} ago`;
+}
+
+export function switchDark() {
+    console.log("Clicked");
+
 }

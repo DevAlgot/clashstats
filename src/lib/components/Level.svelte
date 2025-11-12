@@ -17,13 +17,15 @@
     {/if}
     <div class="cards">
         {#each cards as card}
-            {#if card.evolutionLevel != null}
-                <EvoCard {card}></EvoCard>
-            {:else if card.maxEvolutionLevel != null}
-                <Card {card}></Card>
-            {:else}
-                <Card {card}></Card>
-            {/if}
+            {#key card.id}
+                {#if card.evolutionLevel != null}
+                    <EvoCard {card}></EvoCard>
+                {:else if card.maxEvolutionLevel != null}
+                    <Card {card}></Card>
+                {:else}
+                    <Card {card}></Card>
+                {/if}
+            {/key}
         {/each}
     </div>
 </div>

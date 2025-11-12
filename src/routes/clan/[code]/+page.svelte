@@ -1,0 +1,122 @@
+<script>
+    let { data } = $props();
+
+    const clan = data.clan;
+
+    console.log(clan);
+</script>
+
+<main class="clan">
+    <br />
+    <br />
+    <div class="upper head">
+        <section class="header">
+            <section id="player-info">
+                <img
+                    src="https://cdn.statsroyale.com/images/badges/{clan.badgeId}.png"
+                    alt=""
+                />
+                <div id="clan">
+                    <h1 class="name">{clan.name}</h1>
+                    <p class="tag">{clan.tag}</p>
+                </div>
+            </section>
+        </section>
+    </div>
+    <div class="upper stats"></div>
+</main>
+
+<style lang="scss">
+    @use "src/lib/css/colors.scss" as theme;
+    main.clan {
+        display: block !important;
+        color: var(--neutral-100);
+    }
+    .upper {
+        padding: 1rem;
+        border-radius: 8px;
+        width: 60vw;
+        margin: auto;
+        background-color: var(--primary-700);
+
+        &.head {
+            border-bottom: 0;
+            border-radius: 8px 8px 0 0;
+        }
+
+        &.stats {
+            border-bottom: 0;
+            border-top: 0;
+            border-radius: 0 0 8px 8px;
+            background-color: var(--neutral-200);
+            color: var(--neutral-900);
+        }
+    }
+
+    .name {
+        margin: 0;
+        font-size: xx-large;
+    }
+    .tag {
+        font-family: monospace;
+        margin: 0;
+        margin-top: 0;
+    }
+    .header {
+        position: relative;
+        margin: -1rem;
+        margin-bottom: -1rem;
+        border-radius: 8px 8px 0 0;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        background-color: var(--static-primary-800);
+        height: 160px;
+        color: var(--static-neutral-100);
+
+        #player-info {
+            #clan {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+
+                p {
+                    color: var(--static-neutral-100);
+                    a {
+                        color: var(--accent-300);
+                        text-decoration: none;
+                    }
+                }
+                img {
+                    height: 52px;
+                    width: auto;
+                }
+            }
+        }
+    }
+
+    #nav {
+        margin: -1rem;
+        background-color: var(--static-primary-700);
+        border-top: 1px solid var(--static-primary-400);
+        border-right: 0;
+        border-left: 0;
+        padding: 1rem 0 1rem 0;
+        white-space: nowrap;
+
+        a {
+            display: inline;
+            text-decoration: none;
+
+            padding: 1rem;
+            cursor: pointer;
+
+            color: var(--static-neutral-200);
+            border-right: 1px solid var(--static-primary-200);
+
+            &:hover {
+                background-color: var(--static-primary-400);
+                color: var(--static-neutral-100);
+            }
+        }
+    }
+</style>

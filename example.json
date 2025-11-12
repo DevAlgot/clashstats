@@ -1,304 +1,295 @@
 {
-  "type": "PvP",
-  "battleTime": "20251011T160746.000Z",
-  "isLadderTournament": false,
-  "arena": {
-    "id": 54000020,
-    "name": "Valkalla"
+  "tag": "#L229C8Y0",
+  "name": "chubbz",
+  "type": "open",
+  "description": "den här grabben",
+  "badgeId": 16000141,
+  "clanScore": 26900,
+  "clanWarTrophies": 370,
+  "location": {
+    "id": 57000225,
+    "name": "Sweden",
+    "isCountry": true,
+    "countryCode": "SE"
   },
-  "gameMode": {
-    "id": 72000006,
-    "name": "Ladder"
-  },
-  "deckSelection": "collection",
-  "team": [
+  "requiredTrophies": 0,
+  "donationsPerWeek": 0,
+  "clanChestStatus": "inactive",
+  "clanChestLevel": 1,
+  "clanChestMaxLevel": 0,
+  "members": 16,
+  "memberList": [
     {
       "tag": "#89PY22Q89",
       "name": "birb",
-      "startingTrophies": 9400,
-      "trophyChange": -29,
-      "crowns": 0,
-      "kingTowerHitPoints": 6156,
-      "princessTowersHitPoints": [
-        4032
-      ],
-      "clan": {
-        "tag": "#L229C8Y0",
-        "name": "chubbz",
-        "badgeId": 16000141
+      "role": "coLeader",
+      "lastSeen": "20251110T083356.000Z",
+      "expLevel": 44,
+      "trophies": 9408,
+      "arena": {
+        "id": 54000020,
+        "name": "Valkalla"
       },
-      "cards": [
-        {
-          "name": "Mega Knight",
-          "id": 26000055,
-          "level": 7,
-          "starLevel": 2,
-          "evolutionLevel": 1,
-          "maxLevel": 6,
-          "maxEvolutionLevel": 1,
-          "rarity": "legendary",
-          "elixirCost": 7,
-          "iconUrls": {
-            "medium": "https://api-assets.clashroyale.com/cards/300/O2NycChSNhn_UK9nqBXUhhC_lILkiANzPuJjtjoz0CE.png",
-            "evolutionMedium": "https://api-assets.clashroyale.com/cardevolutions/300/O2NycChSNhn_UK9nqBXUhhC_lILkiANzPuJjtjoz0CE.png"
-          }
-        },
-        {
-          "name": "Firecracker",
-          "id": 26000064,
-          "level": 14,
-          "starLevel": 1,
-          "evolutionLevel": 1,
-          "maxLevel": 14,
-          "maxEvolutionLevel": 1,
-          "rarity": "common",
-          "elixirCost": 3,
-          "iconUrls": {
-            "medium": "https://api-assets.clashroyale.com/cards/300/c1rL3LO1U2D9-TkeFfAC18gP3AO8ztSwrcHMZplwL2Q.png",
-            "evolutionMedium": "https://api-assets.clashroyale.com/cardevolutions/300/c1rL3LO1U2D9-TkeFfAC18gP3AO8ztSwrcHMZplwL2Q.png"
-          }
-        },
-        {
-          "name": "Hog Rider",
-          "id": 26000021,
-          "level": 12,
-          "starLevel": 3,
-          "maxLevel": 12,
-          "rarity": "rare",
-          "elixirCost": 4,
-          "iconUrls": {
-            "medium": "https://api-assets.clashroyale.com/cards/300/Ubu0oUl8tZkusnkZf8Xv9Vno5IO29Y-jbZ4fhoNJ5oc.png"
-          }
-        },
-        {
-          "name": "Archers",
-          "id": 26000001,
-          "level": 13,
-          "starLevel": 2,
-          "maxLevel": 14,
-          "maxEvolutionLevel": 1,
-          "rarity": "common",
-          "elixirCost": 3,
-          "iconUrls": {
-            "medium": "https://api-assets.clashroyale.com/cards/300/W4Hmp8MTSdXANN8KdblbtHwtsbt0o749BbxNqmJYfA8.png",
-            "evolutionMedium": "https://api-assets.clashroyale.com/cardevolutions/300/W4Hmp8MTSdXANN8KdblbtHwtsbt0o749BbxNqmJYfA8.png"
-          }
-        },
-        {
-          "name": "Knight",
-          "id": 26000000,
-          "level": 13,
-          "starLevel": 3,
-          "maxLevel": 14,
-          "maxEvolutionLevel": 1,
-          "rarity": "common",
-          "elixirCost": 3,
-          "iconUrls": {
-            "medium": "https://api-assets.clashroyale.com/cards/300/jAj1Q5rclXxU9kVImGqSJxa4wEMfEhvwNQ_4jiGUuqg.png",
-            "evolutionMedium": "https://api-assets.clashroyale.com/cardevolutions/300/jAj1Q5rclXxU9kVImGqSJxa4wEMfEhvwNQ_4jiGUuqg.png"
-          }
-        },
-        {
-          "name": "Little Prince",
-          "id": 26000093,
-          "level": 3,
-          "maxLevel": 4,
-          "rarity": "champion",
-          "elixirCost": 3,
-          "iconUrls": {
-            "medium": "https://api-assets.clashroyale.com/cards/300/dY-gSseki6KBpkIG17safHH5YlB8SErFZO9OXbJxf9w.png"
-          }
-        },
-        {
-          "name": "The Log",
-          "id": 28000011,
-          "level": 5,
-          "starLevel": 1,
-          "maxLevel": 6,
-          "rarity": "legendary",
-          "elixirCost": 2,
-          "iconUrls": {
-            "medium": "https://api-assets.clashroyale.com/cards/300/_iDwuDLexHPFZ_x4_a0eP-rxCS6vwWgTs6DLauwwoaY.png"
-          }
-        },
-        {
-          "name": "Cannon",
-          "id": 27000000,
-          "level": 13,
-          "starLevel": 3,
-          "maxLevel": 14,
-          "maxEvolutionLevel": 1,
-          "rarity": "common",
-          "elixirCost": 3,
-          "iconUrls": {
-            "medium": "https://api-assets.clashroyale.com/cards/300/nZK1y-beLxO5vnlyUhK6-2zH2NzXJwqykcosqQ1cmZ8.png",
-            "evolutionMedium": "https://api-assets.clashroyale.com/cardevolutions/300/nZK1y-beLxO5vnlyUhK6-2zH2NzXJwqykcosqQ1cmZ8.png"
-          }
-        }
-      ],
-      "supportCards": [
-        {
-          "name": "Tower Princess",
-          "id": 159000000,
-          "level": 14,
-          "maxLevel": 14,
-          "rarity": "common",
-          "iconUrls": {
-            "medium": "https://api-assets.clashroyale.com/cards/300/Nzo5Gjbh7NG6O3Hyu7ev54Pu5zK7vDMR2fbpGdVsS64.png"
-          }
-        }
-      ],
-      "globalRank": null,
-      "elixirLeaked": 3.1
-    }
-  ],
-  "opponent": [
+      "clanRank": 1,
+      "previousClanRank": 1,
+      "donations": 0,
+      "donationsReceived": 0,
+      "clanChestPoints": 0
+    },
     {
-      "tag": "#2220YR0UL",
-      "name": "wildbeaver99",
-      "startingTrophies": 9402,
-      "trophyChange": 29,
-      "crowns": 1,
-      "kingTowerHitPoints": 6324,
-      "princessTowersHitPoints": [
-        4032,
-        506
-      ],
-      "clan": {
-        "tag": "#GRGJVR0V",
-        "name": "The Danish Zone",
-        "badgeId": 16000060
+      "tag": "#RV08Y88",
+      "name": "linkan",
+      "role": "member",
+      "lastSeen": "20251107T105005.000Z",
+      "expLevel": 40,
+      "trophies": 9349,
+      "arena": {
+        "id": 54000020,
+        "name": "Valkalla"
       },
-      "cards": [
-        {
-          "name": "Mega Knight",
-          "id": 26000055,
-          "level": 6,
-          "starLevel": 2,
-          "evolutionLevel": 1,
-          "maxLevel": 6,
-          "maxEvolutionLevel": 1,
-          "rarity": "legendary",
-          "elixirCost": 7,
-          "iconUrls": {
-            "medium": "https://api-assets.clashroyale.com/cards/300/O2NycChSNhn_UK9nqBXUhhC_lILkiANzPuJjtjoz0CE.png",
-            "evolutionMedium": "https://api-assets.clashroyale.com/cardevolutions/300/O2NycChSNhn_UK9nqBXUhhC_lILkiANzPuJjtjoz0CE.png"
-          }
-        },
-        {
-          "name": "Firecracker",
-          "id": 26000064,
-          "level": 14,
-          "starLevel": 1,
-          "evolutionLevel": 1,
-          "maxLevel": 14,
-          "maxEvolutionLevel": 1,
-          "rarity": "common",
-          "elixirCost": 3,
-          "iconUrls": {
-            "medium": "https://api-assets.clashroyale.com/cards/300/c1rL3LO1U2D9-TkeFfAC18gP3AO8ztSwrcHMZplwL2Q.png",
-            "evolutionMedium": "https://api-assets.clashroyale.com/cardevolutions/300/c1rL3LO1U2D9-TkeFfAC18gP3AO8ztSwrcHMZplwL2Q.png"
-          }
-        },
-        {
-          "name": "The Log",
-          "id": 28000011,
-          "level": 6,
-          "starLevel": 1,
-          "maxLevel": 6,
-          "rarity": "legendary",
-          "elixirCost": 2,
-          "iconUrls": {
-            "medium": "https://api-assets.clashroyale.com/cards/300/_iDwuDLexHPFZ_x4_a0eP-rxCS6vwWgTs6DLauwwoaY.png"
-          }
-        },
-        {
-          "name": "Bats",
-          "id": 26000049,
-          "level": 14,
-          "starLevel": 2,
-          "maxLevel": 14,
-          "maxEvolutionLevel": 1,
-          "rarity": "common",
-          "elixirCost": 2,
-          "iconUrls": {
-            "medium": "https://api-assets.clashroyale.com/cards/300/EnIcvO21hxiNpoI-zO6MDjLmzwPbq8Z4JPo2OKoVUjU.png",
-            "evolutionMedium": "https://api-assets.clashroyale.com/cardevolutions/300/EnIcvO21hxiNpoI-zO6MDjLmzwPbq8Z4JPo2OKoVUjU.png"
-          }
-        },
-        {
-          "name": "Goblin Barrel",
-          "id": 28000004,
-          "level": 9,
-          "starLevel": 3,
-          "maxLevel": 9,
-          "maxEvolutionLevel": 1,
-          "rarity": "epic",
-          "elixirCost": 3,
-          "iconUrls": {
-            "medium": "https://api-assets.clashroyale.com/cards/300/CoZdp5PpsTH858l212lAMeJxVJ0zxv9V-f5xC8Bvj5g.png",
-            "evolutionMedium": "https://api-assets.clashroyale.com/cardevolutions/300/CoZdp5PpsTH858l212lAMeJxVJ0zxv9V-f5xC8Bvj5g.png"
-          }
-        },
-        {
-          "name": "Skeleton Army",
-          "id": 26000012,
-          "level": 9,
-          "starLevel": 3,
-          "maxLevel": 9,
-          "maxEvolutionLevel": 1,
-          "rarity": "epic",
-          "elixirCost": 3,
-          "iconUrls": {
-            "medium": "https://api-assets.clashroyale.com/cards/300/fAOToOi1pRy7svN2xQS6mDkhQw2pj9m_17FauaNqyl4.png",
-            "evolutionMedium": "https://api-assets.clashroyale.com/cardevolutions/300/fAOToOi1pRy7svN2xQS6mDkhQw2pj9m_17FauaNqyl4.png"
-          }
-        },
-        {
-          "name": "Witch",
-          "id": 26000007,
-          "level": 10,
-          "starLevel": 2,
-          "maxLevel": 9,
-          "maxEvolutionLevel": 1,
-          "rarity": "epic",
-          "elixirCost": 5,
-          "iconUrls": {
-            "medium": "https://api-assets.clashroyale.com/cards/300/cfwk1vzehVyHC-uloEIH6NOI0hOdofCutR5PyhIgO6w.png",
-            "evolutionMedium": "https://api-assets.clashroyale.com/cardevolutions/300/cfwk1vzehVyHC-uloEIH6NOI0hOdofCutR5PyhIgO6w.png"
-          }
-        },
-        {
-          "name": "Inferno Dragon",
-          "id": 26000037,
-          "level": 6,
-          "starLevel": 3,
-          "maxLevel": 6,
-          "maxEvolutionLevel": 1,
-          "rarity": "legendary",
-          "elixirCost": 4,
-          "iconUrls": {
-            "medium": "https://api-assets.clashroyale.com/cards/300/y5HDbKtTbWG6En6TGWU0xoVIGs1-iQpIP4HC-VM7u8A.png",
-            "evolutionMedium": "https://api-assets.clashroyale.com/cardevolutions/300/y5HDbKtTbWG6En6TGWU0xoVIGs1-iQpIP4HC-VM7u8A.png"
-          }
-        }
-      ],
-      "supportCards": [
-        {
-          "name": "Tower Princess",
-          "id": 159000000,
-          "level": 14,
-          "maxLevel": 14,
-          "rarity": "common",
-          "iconUrls": {
-            "medium": "https://api-assets.clashroyale.com/cards/300/Nzo5Gjbh7NG6O3Hyu7ev54Pu5zK7vDMR2fbpGdVsS64.png"
-          }
-        }
-      ],
-      "globalRank": null,
-      "elixirLeaked": 2.29
+      "clanRank": 2,
+      "previousClanRank": 2,
+      "donations": 0,
+      "donationsReceived": 0,
+      "clanChestPoints": 0
+    },
+    {
+      "tag": "#2ULJU2RQG",
+      "name": "Carlo",
+      "role": "leader",
+      "lastSeen": "20251029T214307.000Z",
+      "expLevel": 43,
+      "trophies": 8686,
+      "arena": {
+        "id": 54000019,
+        "name": "PANCAKES!"
+      },
+      "clanRank": 3,
+      "previousClanRank": 3,
+      "donations": 0,
+      "donationsReceived": 0,
+      "clanChestPoints": 0
+    },
+    {
+      "tag": "#QURJPPQCV",
+      "name": "King Aron",
+      "role": "member",
+      "lastSeen": "20251111T134729.000Z",
+      "expLevel": 38,
+      "trophies": 6500,
+      "arena": {
+        "id": 54000015,
+        "name": "Silent Sanctuary"
+      },
+      "clanRank": 4,
+      "previousClanRank": 4,
+      "donations": 0,
+      "donationsReceived": 0,
+      "clanChestPoints": 0
+    },
+    {
+      "tag": "#GPV2U89C0",
+      "name": "cathlin",
+      "role": "member",
+      "lastSeen": "20251112T112955.000Z",
+      "expLevel": 32,
+      "trophies": 5001,
+      "arena": {
+        "id": 54000012,
+        "name": "Miner's Mine"
+      },
+      "clanRank": 5,
+      "previousClanRank": 5,
+      "donations": 0,
+      "donationsReceived": 0,
+      "clanChestPoints": 0
+    },
+    {
+      "tag": "#2CUL9Q08L",
+      "name": "Freakbob",
+      "role": "member",
+      "lastSeen": "20251112T110915.000Z",
+      "expLevel": 22,
+      "trophies": 3090,
+      "arena": {
+        "id": 54000007,
+        "name": "Hog Mountain"
+      },
+      "clanRank": 6,
+      "previousClanRank": 6,
+      "donations": 0,
+      "donationsReceived": 0,
+      "clanChestPoints": 0
+    },
+    {
+      "tag": "#8V92YLPL2",
+      "name": "magan",
+      "role": "member",
+      "lastSeen": "20250826T092647.000Z",
+      "expLevel": 25,
+      "trophies": 3000,
+      "arena": {
+        "id": 54000007,
+        "name": "Hog Mountain"
+      },
+      "clanRank": 7,
+      "previousClanRank": 7,
+      "donations": 0,
+      "donationsReceived": 0,
+      "clanChestPoints": 0
+    },
+    {
+      "tag": "#V0VLR2YG8",
+      "name": "maine",
+      "role": "member",
+      "lastSeen": "20251110T230131.000Z",
+      "expLevel": 21,
+      "trophies": 2373,
+      "arena": {
+        "id": 54000009,
+        "name": "Frozen Peak"
+      },
+      "clanRank": 8,
+      "previousClanRank": 8,
+      "donations": 0,
+      "donationsReceived": 0,
+      "clanChestPoints": 0
+    },
+    {
+      "tag": "#J2YCLRY09",
+      "name": "TvåChipsOEnCola",
+      "role": "member",
+      "lastSeen": "20250822T204335.000Z",
+      "expLevel": 21,
+      "trophies": 2208,
+      "arena": {
+        "id": 54000008,
+        "name": "Royal Arena"
+      },
+      "clanRank": 9,
+      "previousClanRank": 9,
+      "donations": 0,
+      "donationsReceived": 0,
+      "clanChestPoints": 0
+    },
+    {
+      "tag": "#VGCGVVRL9",
+      "name": "mali",
+      "role": "member",
+      "lastSeen": "20251109T115318.000Z",
+      "expLevel": 19,
+      "trophies": 1866,
+      "arena": {
+        "id": 54000006,
+        "name": "P.E.K.K.A's Playhouse"
+      },
+      "clanRank": 10,
+      "previousClanRank": 10,
+      "donations": 0,
+      "donationsReceived": 0,
+      "clanChestPoints": 0
+    },
+    {
+      "tag": "#CVVJGYUPP",
+      "name": "BreadBoy",
+      "role": "member",
+      "lastSeen": "20251028T210505.000Z",
+      "expLevel": 16,
+      "trophies": 1242,
+      "arena": {
+        "id": 54000004,
+        "name": "Spell Valley"
+      },
+      "clanRank": 11,
+      "previousClanRank": 11,
+      "donations": 0,
+      "donationsReceived": 0,
+      "clanChestPoints": 0
+    },
+    {
+      "tag": "#209GJYYR90",
+      "name": "вовоовв",
+      "role": "member",
+      "lastSeen": "20251019T171252.000Z",
+      "expLevel": 11,
+      "trophies": 1112,
+      "arena": {
+        "id": 54000004,
+        "name": "Spell Valley"
+      },
+      "clanRank": 12,
+      "previousClanRank": 12,
+      "donations": 0,
+      "donationsReceived": 0,
+      "clanChestPoints": 0
+    },
+    {
+      "tag": "#V8JUPV2VY",
+      "name": "dig bick",
+      "role": "member",
+      "lastSeen": "20251112T111022.000Z",
+      "expLevel": 8,
+      "trophies": 1001,
+      "arena": {
+        "id": 54000004,
+        "name": "Spell Valley"
+      },
+      "clanRank": 13,
+      "previousClanRank": 13,
+      "donations": 0,
+      "donationsReceived": 0,
+      "clanChestPoints": 0
+    },
+    {
+      "tag": "#JCVLQ8VYU",
+      "name": "DenIsak",
+      "role": "member",
+      "lastSeen": "20251029T214312.000Z",
+      "expLevel": 6,
+      "trophies": 803,
+      "arena": {
+        "id": 54000003,
+        "name": "Barbarian Bowl"
+      },
+      "clanRank": 14,
+      "previousClanRank": 14,
+      "donations": 0,
+      "donationsReceived": 0,
+      "clanChestPoints": 0
+    },
+    {
+      "tag": "#VPY9L9L82",
+      "name": "Emmy",
+      "role": "member",
+      "lastSeen": "20250906T113205.000Z",
+      "expLevel": 8,
+      "trophies": 428,
+      "arena": {
+        "id": 54000002,
+        "name": "Bone Pit"
+      },
+      "clanRank": 15,
+      "previousClanRank": 15,
+      "donations": 0,
+      "donationsReceived": 0,
+      "clanChestPoints": 0
+    },
+    {
+      "tag": "#UU2PRCCQR",
+      "name": "Ja ente få bety",
+      "role": "member",
+      "lastSeen": "20241226T151050.000Z",
+      "expLevel": 1,
+      "trophies": 64,
+      "arena": {
+        "id": 54000001,
+        "name": "Goblin Stadium"
+      },
+      "clanRank": 16,
+      "previousClanRank": 16,
+      "donations": 0,
+      "donationsReceived": 0,
+      "clanChestPoints": 0
     }
-  ],
-  "isHostedMatch": false,
-  "leagueNumber": 1
+  ]
 }

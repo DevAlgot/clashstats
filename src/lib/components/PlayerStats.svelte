@@ -52,7 +52,6 @@
                 style="margin-top: 20px"
                 cards={allCards}
                 currentDeck={player.currentDeck}
-                repeat={8}
                 support={player.currentDeckSupportCards[0]}
             />
         </div>
@@ -102,7 +101,6 @@
 
     .player-stats {
         section {
-            border-bottom: 1px dotted var(--neutral-300);
             position: relative;
 
             #favorite {
@@ -130,12 +128,8 @@
                 @extend .shadow;
                 color: var(--neutral-800);
                 background-size: cover;
-                background-image: linear-gradient(
-                        rgba(var(--primary-500), 0.85),
-                        rgba(var(--primary-500), 1)
-                    ),
-                    url("$lib/assets/triangles.jpg");
-                background-color: var(--neutral-300);
+
+                background-color: var(--neutral-200);
 
                 border: var(--primary-400 1px solid);
                 border-top: var(--primary-300 1px solid);

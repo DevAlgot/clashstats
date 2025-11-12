@@ -18,7 +18,7 @@
                 >
             </h2>
             <h3>
-                <a href="/clan/{player?.clan?.tag}">
+                <a href="/clan/{player?.clan?.tag.replace('#', '')}">
                     {player?.clan?.name ? player.clan.name : "No clan"}
                 </a>
             </h3>

@@ -10,11 +10,18 @@
     import LevelImage from "$lib/assets/level.png";
     import Level from "./Level.svelte";
 
-    let { currentDeck, cards, support } = $props();
-    if (!support) {
-        support = { id: 159000005 };
-        console.log("no support found, using default");
+    let { opponent, player, collection } = $props();
+    console.log(player);
+
+    let hp = $state(player.kingTowerHitPoints);
+    if (player.princessTowersHitPoints != null) {
+        for (let i = 0; i < player.princessTowersHitPoints.length; i++) {
+            hp += player.princessTowersHitPoints[i];
+        }
     }
+
+    const currentDeck = player.cards;
+    const support = player?.supportCards[0] || 159000005;
 
     //support cards, defiened to easier get the image.
     let supporters = {
@@ -51,12 +58,22 @@
 </script>
 
 <div class="deck-info">
-    <div class="deck">
+    <div class="match-deck deck">
         <div class="support">
-            <img src={supporters[support.id]} alt="" />
+            <img
+                style={opponent ? "transform: scaleX(-1)" : ""}
+                src={supporters[support.id]}
+                alt=""
+            />
         </div>
         {#each currentDeck as card}
-            {#if card.evolutionLevel != null && (currentDeck[0] === card || currentDeck[1] === card)}
+            {#if !collection}
+                {#if card.evolutionLevel != null}
+                    <EvoCard {card}></EvoCard>
+                {:else}
+                    <Card {card}></Card>
+                {/if}
+            {:else if card.evolutionLevel != null && (currentDeck[0] === card || currentDeck[1] === card)}
                 <EvoCard {card}></EvoCard>
             {:else}
                 <Card {card}></Card>
@@ -73,6 +90,32 @@
                 <img class="elixir" src={ElixirImage} alt="" />
                 <p>{avgElixir}</p>
             </section>
+
+            <section id="hp">
+                <p>{hp} HP</p>
+                <ul id="tooltip">
+                    <p><b>Tower Health</b></p>
+                    <hr />
+                    <li>
+                        <p>King</p>
+                        <p>{player.kingTowerHitPoints}</p>
+                    </li>
+                    {#if player.princessTowersHitPoints != null}
+                        {#each player.princessTowersHitPoints as ptHp, index}
+                            <hr />
+                            <li>
+                                <p>Princess</p>
+                                <p>{ptHp}</p>
+                            </li>
+                        {/each}
+                    {/if}
+                    <hr />
+                    <li>
+                        <p><b>Total</b></p>
+                        <p>{hp}</p>
+                    </li>
+                </ul>
+            </section>
         </div>
     </div>
 </div>
@@ -80,25 +123,18 @@
 <style lang="scss" global>
     @use "src/lib/css/colors.scss" as *;
 
-    $color: rgba(var(--primary-300), 0.15);
-
     .deck-info {
         text-align: center;
         font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
         background-color: inherit;
     }
 
-    .deck {
-        display: grid;
-        border-radius: 15px;
-        padding: 15px 9px 0px 9px;
-        background-size: cover;
-        color: var(--neutral-900);
-        background: linear-gradient(var(--neutral-200), var(--neutral-100));
-        grid-template-columns: repeat(8, minmax(0, 1fr));
+    .match-deck {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        background: linear-gradient(var(--neutral-300), var(--neutral-200));
 
         .support {
-            grid-column: 1 / span 8;
+            grid-column: 1 / span 4;
         }
 
         .detail {
@@ -135,6 +171,48 @@
                 height: 130px;
                 mask-image: linear-gradient(black 67%, transparent 86%);
             }
+        }
+    }
+
+    #hp {
+        position: relative;
+        #tooltip {
+            list-style: none;
+            width: max-content;
+            opacity: 0;
+            position: absolute;
+            bottom: 10px;
+            right: 0;
+            transform: translate(25%, 25%) scale(0.6);
+            background-color: var(--neutral-100);
+            padding: 0.75rem;
+            border-radius: 5px;
+            transition: all 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
+            pointer-events: none;
+
+            li {
+                font-size: smaller;
+                position: relative;
+                margin: 1rem 0;
+                display: flex;
+                justify-content: space-between;
+                margin: 0;
+
+                p {
+                    margin: 0;
+                }
+            }
+
+            hr {
+                height: 1px;
+                color: var(--neutral-300);
+            }
+        }
+
+        &:hover #tooltip {
+            opacity: 1;
+            transform: scale(1) translate(25%, 0);
+            pointer-events: all;
         }
     }
 </style>

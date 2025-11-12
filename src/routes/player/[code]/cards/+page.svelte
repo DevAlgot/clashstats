@@ -62,7 +62,8 @@
             <select
                 name="sort"
                 id=""
-                onchange={(e) => sortCards(e, cardsGroupedByLevel)}
+                onchange={(e) =>
+                    (cardsGroupedByLevel = sortCards(e, cardsGroupedByLevel))}
             >
                 <option value="rarity-asc">Rarity Ascending</option>
                 <option value="rarity-desc">Rarity Descending</option>

@@ -82,9 +82,9 @@
         border-radius: 8px 8px 0 0;
         padding: 1rem;
         margin-bottom: 1rem;
-        background-color: var(--primary-800);
+        background-color: var(--static-primary-800);
         height: 160px;
-        color: var(--neutral-100);
+        color: var(--static-neutral-100);
 
         #favorite,
         #arena {
@@ -115,7 +115,7 @@
                 gap: 0.5rem;
 
                 p {
-                    color: var(--accent-100);
+                    color: var(--static-neutral-100);
                     a {
                         color: var(--accent-300);
                         text-decoration: none;
@@ -131,8 +131,8 @@
 
     #nav {
         margin: -1rem;
-        background-color: var(--primary-700);
-        border-top: 1px solid var(--primary-400);
+        background-color: var(--static-primary-700);
+        border-top: 1px solid var(--static-primary-400);
         border-right: 0;
         border-left: 0;
         padding: 1rem 0 1rem 0;
@@ -145,12 +145,12 @@
             padding: 1rem;
             cursor: pointer;
 
-            color: var(--neutral-200);
-            border-right: 1px solid var(--primary-200);
+            color: var(--static-neutral-200);
+            border-right: 1px solid var(--static-primary-200);
 
             &:hover {
-                background-color: var(--primary-400);
-                color: var(--neutral-100);
+                background-color: var(--static-primary-400);
+                color: var(--static-neutral-100);
             }
         }
     }

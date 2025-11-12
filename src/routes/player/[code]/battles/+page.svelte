@@ -66,7 +66,7 @@
             border-bottom: 0;
             border-top: 0;
             border-radius: 0 0 8px 8px;
-            background-color: var(--neutral-200);
+            background-color: var(--neutral-100);
             color: var(--neutral-900);
         }
     }

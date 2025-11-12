@@ -34,7 +34,6 @@
 
 <style lang="scss">
     @use "src/lib/css/colors.scss" as *;
-    @use "src/lib/css/global.scss" as *;
 
     main {
         display: flex;
@@ -47,20 +46,17 @@
             margin-bottom: 0.5rem;
             color: var(--neutral-200);
             text-shadow: 0 0 25px var(--primary-400);
-
-            span {
-                font-size: 1.5rem;
-                color: gray;
-            }
         }
 
         a {
-            color: $primary-300;
+            color: var(--primary-300);
         }
     }
 
     #search {
-        @extend .pad0-mar0;
+        /* previously used shared utility .pad0-mar0 */
+        padding: 0;
+        margin: 0;
         display: flex;
         justify-content: center;
         width: 100%;
@@ -69,11 +65,13 @@
         border-radius: 0.5rem;
 
         input {
-            @extend .border-none;
+            /* previously used shared utility .border-none */
+            border: none;
+            box-shadow: none;
             padding: 0.75rem 1rem;
             border-radius: 0.5rem 0 0 0.5rem;
             background: rgba(255, 255, 255, 0.1);
-            color: $neutral-100;
+            color: var(--neutral-100);
             font-size: 1.1rem;
             transition: background 0.2s;
 
@@ -90,7 +88,9 @@
         }
 
         button {
-            @extend .border-none;
+            /* previously used shared utility .border-none */
+            border: none;
+            box-shadow: none;
             padding: 0.75rem 1.2rem;
             border-radius: 0 0.5rem 0.5rem 0;
             background: rgba(255, 255, 255, 0.18);

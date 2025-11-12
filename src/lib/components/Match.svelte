@@ -1,7 +1,7 @@
 <script>
     // Sort cards within each level group by rarity and then name
     import { sortBy } from "$lib/utils.js";
-    import Deck from "$lib/components/Deck.svelte";
+    import Deck from "$lib/components/MatchDeck.svelte";
     import Level from "$lib/components/Level.svelte";
     import PlayerMatch from "$lib/components/PlayerMatch.svelte";
     import {
@@ -18,8 +18,6 @@
     let { match } = $props();
     const win = match.opponent[0].crowns < match.team[0].crowns;
 
-    const now = new Date();
-
     let deltaLevel = round(
         getAvrageLevel(match.team[0].cards) -
             getAvrageLevel(match.opponent[0].cards),
@@ -34,8 +32,6 @@
     let minute = match.battleTime.substring(11, 13);
     let second = match.battleTime.substring(13, 15);
 
-    const battleTime = new Date(year, month, day, hour, minute, second);
-
     let date =
         year +
         "-" +
@@ -48,56 +44,48 @@
         minute +
         ":" +
         second;
-
-    if (match.gameMode.name == "PickMode") {
-        console.log(match);
-    }
+    const isCollection = match.deckSelection === "collection";
 </script>
 
-<div class="match {win ? 'win' : 'lose'}">
-    <div class="info">
-        <h3>{match.gameMode.name}</h3>
-        <div>
-            <img src={blueCrown} alt="" />
-            <p>{match.team[0].crowns} - {match.opponent[0].crowns}</p>
-            <img src={redCrown} alt="" />
+{#if match.gameMode.name != "ClanWar_BoatBattle"}
+    <div class="match {win ? 'win' : 'lose'}">
+        <div class="info">
+            <h3>{match.gameMode.name}</h3>
+            <div>
+                <img src={blueCrown} alt="" />
+                <p>{match.team[0].crowns} - {match.opponent[0].crowns}</p>
+                <img src={redCrown} alt="" />
+            </div>
         </div>
-    </div>
 
-    <section class="decks">
-        <section class="team">
-            <PlayerMatch player={match.team[0]}></PlayerMatch>
-            <Deck
-                currentDeck={match.team[0].cards}
-                support={match.team[0].supportCards[0]}
-                title="Your Deck"
-                repeat={4}
-            />
+        <section class="decks">
+            <section class="team">
+                <PlayerMatch player={match.team[0]}></PlayerMatch>
+                <Deck player={match.team[0]} collection={isCollection} />
+            </section>
+            <div id="middle">
+                <p>vs</p>
+                <div id="separator"></div>
+            </div>
+            <section class="opponent">
+                <PlayerMatch player={match.opponent[0]} opponent={true}
+                ></PlayerMatch>
+                <Deck
+                    opponent={true}
+                    player={match.opponent[0]}
+                    collection={isCollection}
+                />
+            </section>
         </section>
-        <div id="middle">
-            <p>vs</p>
-            <div id="separator"></div>
+        <div id="bottom">
+            <p>&Delta;Lvl: {deltaLevel}</p>
+            <section id="time">
+                <p>{getTimeAgo(match.battleTime)}</p>
+                <div id="tooltip">{date}</div>
+            </section>
         </div>
-        <section class="opponent">
-            <PlayerMatch player={match.opponent[0]} opponent={true}
-            ></PlayerMatch>
-            <Deck
-                currentDeck={match.opponent[0].cards}
-                support={match.opponent[0].supportCards[0]}
-                title="Opponent's Deck"
-                repeat={4}
-                opponent={true}
-            />
-        </section>
-    </section>
-    <div id="bottom">
-        <p>&Delta;Lvl: {deltaLevel}</p>
-        <section id="time">
-            <p>{getTimeAgo(match.battleTime)}</p>
-            <div id="tooltip">{date}</div>
-        </section>
     </div>
-</div>
+{/if}
 
 <style lang="scss">
     @use "src/lib/css/colors.scss" as *;
@@ -116,7 +104,7 @@
         border-radius: 8px;
         padding: 1rem;
         margin-bottom: 1rem;
-        background-color: var(--neutral-100);
+        background-color: var(--neutral-200);
         .trophies {
             margin: 0;
             font-weight: bold;
@@ -180,13 +168,13 @@
 
         #time {
             #tooltip {
+                @extend .shadow;
                 opacity: 0;
                 position: absolute;
                 top: -120%;
                 right: 0;
                 transform: translate(25%, -50%) scale(0.6);
                 background-color: var(--neutral-100);
-                box-shadow: 0 0 3px 0 var(--neutral-500);
                 padding: 0.75rem;
                 border-radius: 5px;
                 transition: all 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
