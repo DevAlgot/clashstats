@@ -6,7 +6,7 @@ export function round(num, decimals = 2) {
 }
 
 export function getLevel(card) {
-    return card.level + (14 - card.maxLevel);
+    return card.level + (16 - card.maxLevel);
 }
 
 export function sortBy(list, type, ascending) {
@@ -124,17 +124,6 @@ export function sortCards(e, cardsGroupedByLevel) {
             }
             break;
     }
-
-    for (let i = 0; i < cardsGroupedByLevel.length; i++) {
-        console.log(cardsGroupedByLevel[i]);
-
-        cardsGroupedByLevel[i].forEach(card => {
-            console.log(card.elixirCost);
-
-        });
-
-    }
-
     return cardsGroupedByLevel;
 }
 
@@ -173,4 +162,36 @@ export function getTimeAgo(battleTimeString) {
 export function switchDark() {
     console.log("Clicked");
 
+}
+
+export function getArena(arenaId, name) {
+    let arena = arenaId - (54000000);
+    console.log(name + "-" + arena + ": " + arenas[arena]);
+
+    return arenas[arena];
+}
+
+let arenas = {
+    0: 0,
+    1: 1,
+    2: 2,
+    3: 3,
+    4: 4,
+    5: 5,
+    6: 6,
+    7: 10,
+    8: 7,
+    9: 7,
+    10: 9,
+    11: 12,
+    12: 15,
+    13: 14,
+    14: 15,
+    15: 18,
+    16: 18,
+    17: 18,
+    18: 19,
+    19: 22,
+    20: 23,
+    31: 24
 }

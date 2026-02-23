@@ -1,10 +1,10 @@
 <script>
     import { round, getLevel, sortBy, rarityRank, sortCards } from "$lib/utils";
 
-    import Deck from "$lib/components/Deck.svelte";
+    import Deck from "$lib/components/Player/Deck.svelte";
     import Card from "$lib/components/cards/Card.svelte";
     import EvoCard from "$lib/components/cards/EvoCard.svelte";
-    import Level from "$lib/components/Level.svelte";
+    import Level from "$lib/components/Player/Level.svelte";
 
     let { player } = $props();
 
@@ -23,7 +23,7 @@
             src="https://cdn.statsroyale.com/v5/image/chr/{urlToFavorite}_dl.png"
             alt=""
         />
-        <ul>
+        <ul class="stats">
             <li>
                 <h2><strong>Trophies:</strong></h2>
                 <p>{player.trophies}</p>
@@ -57,10 +57,10 @@
         </div>
     </section>
     <section>
-        <ul>
+        <ul class="stats">
             <li>
                 <h3>General</h3>
-                <ul>
+                <ul class="general-stats">
                     <li>Trophies: {player.trophies}</li>
                     <li>PB: {player.bestTrophies}</li>
                     <li>Three Crown Wins: {player.threeCrownWins}</li>
@@ -73,7 +73,7 @@
     <section>
         <h2>Badges</h2>
 
-        <ul id="badges">
+        <ul id="badges" class="stats">
             {#each player.badges as badge}
                 {#if !badge.name.includes("Mastery")}
                     <li>
@@ -116,7 +116,8 @@
             @extend .shadow;
             border-radius: 15px;
         }
-        ul {
+
+        .stats {
             list-style: none;
             padding: 0;
             width: 100%;
@@ -142,6 +143,19 @@
                     width: 100%;
                     flex: 1;
                     margin: 0 5px 5px 5px;
+                }
+
+                .general-stats {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 0.5rem;
+                    padding-left: 1rem;
+
+                    li {
+                        display: flex;
+                        justify-content: space-between;
+                        background: none;
+                    }
                 }
             }
         }

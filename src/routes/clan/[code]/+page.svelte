@@ -1,4 +1,8 @@
 <script>
+    import Player from "$lib/components/Clan/Player.svelte";
+    import "$lib/css/global.scss";
+    import "$lib/css/player.scss";
+
     let { data } = $props();
 
     const clan = data.clan;
@@ -21,9 +25,14 @@
                     <p class="tag">{clan.tag}</p>
                 </div>
             </section>
+            <p><i>{clan.description}</i></p>
         </section>
     </div>
-    <div class="upper stats"></div>
+    <div class="upper stats">
+        {#each clan.memberList as player}
+            <Player {player} />
+        {/each}
+    </div>
 </main>
 
 <style lang="scss">
@@ -74,11 +83,11 @@
         color: var(--static-neutral-100);
 
         #player-info {
+            display: flex;
+            gap: 0.5rem;
             #clan {
-                display: flex;
-                align-items: center;
-                gap: 0.5rem;
-
+                display: inherit;
+                flex-direction: column;
                 p {
                     color: var(--static-neutral-100);
                     a {
@@ -86,10 +95,10 @@
                         text-decoration: none;
                     }
                 }
-                img {
-                    height: 52px;
-                    width: auto;
-                }
+            }
+            img {
+                height: 69px;
+                width: auto;
             }
         }
     }

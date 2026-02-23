@@ -6,10 +6,10 @@
     import "$lib/css/global.scss";
     import "$lib/css/player.scss";
 
-    import PlayerStats from "$lib/components/PlayerStats.svelte";
-    import PlayerHead from "$lib/components/PlayerHead.svelte";
-    import Match from "$lib/components/Match.svelte";
-    import Level from "$lib/components/Level.svelte";
+    import PlayerStats from "$lib/components/Player/PlayerStats.svelte";
+    import PlayerHead from "$lib/components/Player/PlayerHead.svelte";
+    import Match from "$lib/components/Player/Match.svelte";
+    import Level from "$lib/components/Player/Level.svelte";
 
     let { data, params } = $props();
 

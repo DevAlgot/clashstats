@@ -3,15 +3,16 @@
     import "$lib/css/global.scss";
     import "$lib/css/card.scss";
 
-    import Card from "./cards/Card.svelte";
-    import EvoCard from "./cards/EvoCard.svelte";
+    import Card from "$lib/components/cards/Card.svelte";
+    import EvoCard from "$lib/components/cards/EvoCard.svelte";
+    import { getLevel } from "$lib/utils";
 
     let { cards } = $props();
 </script>
 
 <div>
-    {#if cards[0].level + (14 - cards[0].maxLevel) < 15}
-        <h2>Level {cards[0].level + (14 - cards[0].maxLevel)}</h2>
+    {#if getLevel(cards[0]) < 15}
+        <h2>Level {getLevel(cards[0])}</h2>
     {:else}
         <h2>Elite</h2>
     {/if}

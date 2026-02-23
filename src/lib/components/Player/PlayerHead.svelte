@@ -25,7 +25,6 @@
         `;
     }
 
-    console.log(page.url.pathname === "/player/" + code + "/cards");
     let arenaUrl = `/src/lib/assets/images/arenas/arena${arena}.png`;
 </script>
 
@@ -40,9 +39,8 @@
                 alt=""
             />
             <p>
-                <a href="">{player?.clan?.name ?? "No clan"}</a> <br />{roles?.[
-                    player?.role
-                ] ?? ""}
+                <a href="">{player?.clan?.name ?? "No clan"}</a>
+                <br />{roles?.[player?.role] ?? ""}
             </p>
         </div>
     </section>

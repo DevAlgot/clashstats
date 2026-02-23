@@ -105,10 +105,10 @@
             display: flex;
             border-radius: 4px;
             &.win {
-                border: 2px solid var(--accent-400);
+                border: 2px solid var(--win-color);
             }
             &.lose {
-                border: 2px solid red;
+                border: 2px solid var(--lose-color);
             }
         }
     }

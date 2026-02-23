@@ -11,7 +11,6 @@
     import Level from "./Level.svelte";
 
     let { opponent, player, collection } = $props();
-    console.log(player);
 
     let hp = $state(player.kingTowerHitPoints);
     if (player.princessTowersHitPoints != null) {

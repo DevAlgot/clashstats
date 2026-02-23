@@ -1,9 +1,9 @@
 <script>
     // Sort cards within each level group by rarity and then name
     import { sortBy } from "$lib/utils.js";
-    import Deck from "$lib/components/MatchDeck.svelte";
-    import Level from "$lib/components/Level.svelte";
-    import PlayerMatch from "$lib/components/PlayerMatch.svelte";
+    import Deck from "$lib/components/Player/MatchDeck.svelte";
+    import Level from "$lib/components/Player/Level.svelte";
+    import PlayerMatch from "$lib/components/Player/PlayerMatch.svelte";
     import {
         rarityRank,
         getAvrageLevel,
@@ -92,11 +92,11 @@
     @use "src/lib/css/global.scss" as *;
 
     .lose {
-        border-top: 5px solid red;
+        border-top: 5px solid var(--lose-color);
     }
 
     .win {
-        border-top: 5px solid #83bf26;
+        border-top: 5px solid var(--win-color);
     }
 
     .match {

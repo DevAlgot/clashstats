@@ -6,9 +6,9 @@
     import "$lib/css/global.scss";
     import "$lib/css/player.scss";
 
-    import PlayerStats from "$lib/components/PlayerStats.svelte";
-    import PlayerHead from "$lib/components/PlayerHead.svelte";
-    import Match from "$lib/components/Match.svelte";
+    import PlayerStats from "$lib/components/Player/PlayerStats.svelte";
+    import PlayerHead from "$lib/components/Player/PlayerHead.svelte";
+    import Match from "$lib/components/Player/Match.svelte";
 
     export let data;
     export let params;
@@ -31,7 +31,7 @@
 
 <main class="player">
     <br />
-    <br />
+    <br class="dark" />
     <div class="upper head">
         <PlayerHead {player} code={params.code} />
     </div>

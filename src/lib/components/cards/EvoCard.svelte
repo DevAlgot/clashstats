@@ -2,6 +2,7 @@
     import { get } from "svelte/store";
     import "$lib/css/global.scss";
     import "$lib/css/card.scss";
+    import { getLevel } from "$lib/utils";
 
     let { card } = $props();
 
@@ -11,7 +12,7 @@
 <a href="../card/{card.name}">
     <div id="card">
         <img src={cardImage} alt="" srcset="" />
-        <p>Level {card.level + (14 - card.maxLevel)}</p>
+        <p>Level {getLevel(card)}</p>
     </div>
 </a>
 
